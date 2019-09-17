@@ -1,25 +1,29 @@
 package com.springBoot.toDoList.controller;
 
-import com.springBoot.toDoList.data.staticData;
-import com.springBoot.toDoList.service.userService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
-
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api/users")
+//@RequestMapping("/api/userId")
 public class userController {
 
-    @Autowired
-    private userService userService;
+    String bob = "Terrible";
 
-    @RequestMapping(method = RequestMethod.GET)
-    public Collection<staticData> getAllUsers(){
-        return userService.getAllUsers();
+    @GetMapping("/api/userId")
+    @ResponseBody
+    public String sayHello() {
+        return bob;
     }
+//    @Autowired
+//    private userService userService;
 
-}
+//    @RequestMapping(method = RequestMethod.POST)
+//    public void returnSomething(){
+//        System.out.println("Something!");
+
+    }
+//    public Collection<staticData> getAllUsers(){
+//        return userService.getAllUsers();
+//    }
+//}

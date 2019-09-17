@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-todo',
@@ -8,14 +9,19 @@ import { Component, OnInit } from '@angular/core';
 export class TodoComponent implements OnInit {
 
   task: String;
+  obj: Object;
 
-  constructor() { }
+  constructor(private user: UsersService) { }
 
   ngOnInit() {
   }
 
-  bob() {
-    console.log(this.task);
+  addTask() {
+    this.obj = {
+      input: this.task,
+      userId: '1'
+    }
+    console.log(this.obj);
+    this.user.postUser(this.obj);
   }
-
 }
