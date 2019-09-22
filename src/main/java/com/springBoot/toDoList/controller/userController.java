@@ -13,7 +13,7 @@ public class userController {
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public String returnSomething(){
-        System.out.println("Something 2!");
+
         String returnObject = "{user: 1, name: Derock}";
         return returnObject;
     }

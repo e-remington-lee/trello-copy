@@ -9,12 +9,11 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   postUser(user) {
-    console.log(`post: ${JSON.stringify(user)}`)
     return this.http.post('/api/userId', JSON.stringify(user))
   }
 
   getUser() {
     // const options = new HttpParams().set('name', 'hello')
-    return this.http.get('/api/get', {responseType: 'text'})
+    return this.http.get('/api/get')
   }
 }

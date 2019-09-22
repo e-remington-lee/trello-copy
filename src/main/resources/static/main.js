@@ -204,7 +204,6 @@ let TodoComponent = class TodoComponent {
             input: this.task,
             userId: '1'
         };
-        console.log(this.obj);
         this.user.postUser(this.obj).subscribe();
     }
     getUser() {
@@ -249,12 +248,11 @@ let UsersService = class UsersService {
         this.http = http;
     }
     postUser(user) {
-        console.log(`post: ${JSON.stringify(user)}`);
         return this.http.post('/api/userId', JSON.stringify(user));
     }
     getUser() {
         // const options = new HttpParams().set('name', 'hello')
-        return this.http.get('/api/get', { responseType: 'text' });
+        return this.http.get('/api/get');
     }
 };
 UsersService.ctorParameters = () => [

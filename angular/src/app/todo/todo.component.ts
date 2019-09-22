@@ -21,7 +21,6 @@ export class TodoComponent implements OnInit {
       input: this.task,
       userId: '1'
     }
-    console.log(this.obj);
     this.user.postUser(this.obj).subscribe()
   }
 
