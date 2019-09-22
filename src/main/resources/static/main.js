@@ -102,7 +102,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let AppComponent = class AppComponent {
     constructor() {
-        this.title = 'angular';
+        this.title = 'To Do List';
     }
 };
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -253,8 +253,8 @@ let UsersService = class UsersService {
         return this.http.post('/api/userId', JSON.stringify(user));
     }
     getUser() {
-        const options = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('name', 'hello');
-        return this.http.get('/api/userId', { params: options });
+        // const options = new HttpParams().set('name', 'hello')
+        return this.http.get('/api/get', { responseType: 'text' });
     }
 };
 UsersService.ctorParameters = () => [

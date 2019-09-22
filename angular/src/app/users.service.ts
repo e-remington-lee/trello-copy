@@ -14,7 +14,7 @@ export class UsersService {
   }
 
   getUser() {
-    const options = new HttpParams().set('name', 'hello')
-    return this.http.get('/api/userId', {params: options})
+    // const options = new HttpParams().set('name', 'hello')
+    return this.http.get('/api/get', {responseType: 'text'})
   }
 }
