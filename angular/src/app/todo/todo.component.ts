@@ -22,6 +22,12 @@ export class TodoComponent implements OnInit {
       userId: '1'
     }
     console.log(this.obj);
-    this.user.postUser(this.obj);
+    this.user.postUser(this.obj).subscribe()
+  }
+
+  getUser() {
+    this.user.getUser().subscribe(data => {
+      console.log(data)
+    })
   }
 }
