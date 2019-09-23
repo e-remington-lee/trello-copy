@@ -15,6 +15,7 @@ public class userController {
     public String returnSomething(){
 
         String returnObject = "{user: 1, name: Derock}";
+        System.out.println(returnObject);
         return returnObject;
     }
 

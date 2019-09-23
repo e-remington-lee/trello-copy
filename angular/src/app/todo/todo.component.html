@@ -3,4 +3,7 @@
     <input name='taskInput' [(ngModel)]='task'>
 </form>
 <button (click)='addTask()'>Add Task</button>
-<button (click)='getUser()'>Test Get</button>
+<form>
+    <input name='get' [(ngModel)]='getParams'>
+</form>
+<button (click)='getRequest()'>Test Get</button>

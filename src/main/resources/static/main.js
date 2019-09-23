@@ -41,7 +41,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Todo App!</h1>\n<form>\n    <input name='taskInput' [(ngModel)]='task'>\n</form>\n<button (click)='addTask()'>Add Task</button>\n<button (click)='getUser()'>Test Get</button>\n"
+module.exports = "<h1>Todo App!</h1>\n<form>\n    <input name='taskInput' [(ngModel)]='task'>\n</form>\n<button (click)='addTask()'>Add Task</button>\n<form>\n    <input name='get' [(ngModel)]='getParams'>\n</form>\n<button (click)='getRequest()'>Test Get</button>\n"
 
 /***/ }),
 
@@ -206,8 +206,8 @@ let TodoComponent = class TodoComponent {
         };
         this.user.postUser(this.obj).subscribe();
     }
-    getUser() {
-        this.user.getUser().subscribe(data => {
+    getRequest() {
+        this.user.getUser(this.getParams).subscribe(data => {
             console.log(data);
         });
     }
@@ -248,11 +248,11 @@ let UsersService = class UsersService {
         this.http = http;
     }
     postUser(user) {
-        return this.http.post('/api/userId', JSON.stringify(user));
+        return this.http.post('/api/userId', user, { responseType: 'text' });
     }
-    getUser() {
-        // const options = new HttpParams().set('name', 'hello')
-        return this.http.get('/api/get');
+    getUser(params) {
+        const options = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('information', params);
+        return this.http.get('/api/get', { params: options });
     }
 };
 UsersService.ctorParameters = () => [

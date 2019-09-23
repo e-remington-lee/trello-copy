@@ -9,6 +9,7 @@ import { UsersService } from '../users.service';
 export class TodoComponent implements OnInit {
 
   task: String;
+  getParams: string;
   obj: Object;
 
   constructor(private user: UsersService) { }
@@ -24,8 +25,8 @@ export class TodoComponent implements OnInit {
     this.user.postUser(this.obj).subscribe()
   }
 
-  getUser() {
-    this.user.getUser().subscribe(data => {
+  getRequest() {
+    this.user.getUser(this.getParams).subscribe(data => {
       console.log(data)
     })
   }
