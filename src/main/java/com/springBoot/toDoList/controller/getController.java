@@ -24,6 +24,7 @@ public class getController {
 //        System.out.println(x);
 //        return users.toString();
 //    }
+
     @RequestMapping(method = RequestMethod.GET)
     public String getMethod(@RequestParam String information){
         JSONObject bob = new JSONObject();
