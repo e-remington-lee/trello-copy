@@ -2,14 +2,11 @@ package com.springBoot.toDoList.dao;
 
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-
 @Repository
 public class getCurrentUser {
 
     public static void main(String[] args) {
-        Connection con = DriverManager.getConnection()
+//        Connection con = DriverManager.getConnection();
 
     }
 //    @Autowired
