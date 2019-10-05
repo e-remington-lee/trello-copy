@@ -18,5 +18,4 @@ public class userController {
         System.out.println(returnObject);
         return returnObject;
     }
-
 }
