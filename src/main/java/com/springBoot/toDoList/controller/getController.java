@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,11 +28,4 @@ public class getController {
         return users.toString();
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String getMethod(@RequestParam String information){
-        JSONObject bob = new JSONObject();
-        bob.put("xyz", information);
-
-        return bob.toString();
-    }
 }

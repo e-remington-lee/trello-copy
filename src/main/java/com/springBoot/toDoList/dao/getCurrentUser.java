@@ -10,16 +10,25 @@ import java.util.Properties;
 
 @Repository
 public class getCurrentUser {
+    private final static String driver = "org.postgresql.Driver";
+    private final static String url = "jdbc:postgresql://localhost/" + System.getenv("db_database_todolist");
 
     public static void main(String[] args) {
+        try {
 
-        String url = "jdbc:postgresql://localhost/" + System.getenv("db_database_todolist");
-        Properties props = new Properties();
-        props.setProperty("user", System.getenv("db_username"));
+            Properties props = new Properties();
+            props.setProperty("user", System.getenv("db_username"));
 //        props.setProperty("user", System.getenv("db_host"));
-        props.setProperty("user", System.getenv("db_password"));
-        Connection con = DriverManager.getConnection(url, props);
-        PreparedStatement st = con.prepareStatement("SELECT * FROM users");
+            props.setProperty("password", System.getenv("db_password"));
+            props.setProperty("port", "8080");
+            Connection con = DriverManager.getConnection(url, props);
+            PreparedStatement st = con.prepareStatement("SELECT * FROM users");
+            ResultSet rs = st.executeQuery();
+            System.out.println(rs);
+            con.close();
+        } catch (SQLException err) {
+            throw new Error(err.getMessage());
+        }
     }
 //    @Autowired
 //    private static Map<Integer, staticData> currentUsers;
