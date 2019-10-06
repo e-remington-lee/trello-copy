@@ -204,7 +204,9 @@ let TodoComponent = class TodoComponent {
             input: this.task,
             userId: '1'
         };
-        this.user.postUser(this.obj).subscribe();
+        this.user.postUser(this.obj).subscribe(data => {
+            console.log(data);
+        });
     }
     getRequest() {
         this.user.getUser(this.getParams).subscribe(data => {
@@ -248,7 +250,7 @@ let UsersService = class UsersService {
         this.http = http;
     }
     postUser(user) {
-        return this.http.post('/api/userId', user, { responseType: 'text' });
+        return this.http.post('/api/userId', user);
     }
     getUser(params) {
         const options = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('information', params);

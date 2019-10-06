@@ -22,7 +22,10 @@ export class TodoComponent implements OnInit {
       input: this.task,
       userId: '1'
     }
-    this.user.postUser(this.obj).subscribe()
+    this.user.postUser(this.obj).subscribe(data => {
+      console.log(data);
+    }
+    )
   }
 
   getRequest() {
