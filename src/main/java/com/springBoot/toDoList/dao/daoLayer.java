@@ -39,13 +39,9 @@ public class daoLayer {
             Connection con = DriverManager.getConnection(url, connect());
             PreparedStatement st = con.prepareStatement(("INSERT into tasks (user_id, task_name) VALUES (?, ?)"));
             st.setInt(1,1);
-            st.setString(1,task);
-            st.executeQuery();
-//            Map<Integer, String> map = new HashMap<>();
-//            while (rs.next()) {
-//                map.put(rs.getInt(1), rs.getString(2));
-//            }
-            con.commit();
+            st.setString(2,task);
+            int rs = st.executeUpdate();
+//            con.commit();
             con.close();
 
         } catch (SQLException err) {
