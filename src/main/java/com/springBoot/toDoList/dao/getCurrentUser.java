@@ -2,9 +2,9 @@ package com.springBoot.toDoList.dao;
 
 import org.springframework.stereotype.Repository;
 
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.PreparedStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.*;
 import java.util.Properties;
 
@@ -15,16 +15,17 @@ public class getCurrentUser {
 
     public static void main(String[] args) {
         try {
-
             Properties props = new Properties();
             props.setProperty("user", System.getenv("db_username"));
-//        props.setProperty("user", System.getenv("db_host"));
             props.setProperty("password", System.getenv("db_password"));
-            props.setProperty("port", "8080");
+//            props.setProperty("port", "8080");
             Connection con = DriverManager.getConnection(url, props);
             PreparedStatement st = con.prepareStatement("SELECT * FROM users");
             ResultSet rs = st.executeQuery();
-            System.out.println(rs);
+            while (rs.next()) {
+                System.out.println(rs.getInt(1) +" " + rs.getString(2));
+            }
+
             con.close();
         } catch (SQLException err) {
             throw new Error(err.getMessage());
