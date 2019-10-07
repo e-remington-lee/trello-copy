@@ -9,7 +9,7 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   postUser(user) {
-    return this.http.post('/api/userId', user)
+    return this.http.post('/api/createTask', user)
   }
 
   getUser(params) {

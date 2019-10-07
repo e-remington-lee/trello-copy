@@ -41,9 +41,7 @@ public class daoLayer {
             st.setInt(1,userId);
             st.setString(2,task);
             int rs = st.executeUpdate();
-//            con.commit();
             con.close();
-
         } catch (SQLException err) {
             throw new Error(err.getMessage());
         }

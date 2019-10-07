@@ -9,20 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-@RestController
 
-//make it /api/createUser eventually;
+@RestController
 public class postTask {
 
-    @PostMapping("/api/userId")
+    @PostMapping("/api/createTask")
     @ResponseStatus(HttpStatus.CREATED)
-    public String returnSomething(@RequestBody Map<String, Object> obj){
-
+    public String postTask(@RequestBody Map<String, Object> obj){
         String task = obj.get("task").toString();
         Integer userId = (int) obj.get("userId");
         System.out.println(task);
         daoLayer.createTask(task, userId);
-
         return task;
     }
 }

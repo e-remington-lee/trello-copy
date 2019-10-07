@@ -250,7 +250,7 @@ let UsersService = class UsersService {
         this.http = http;
     }
     postUser(user) {
-        return this.http.post('/api/userId', user);
+        return this.http.post('/api/createTask', user);
     }
     getUser(params) {
         const options = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('information', params);
