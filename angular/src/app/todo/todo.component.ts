@@ -19,8 +19,8 @@ export class TodoComponent implements OnInit {
 
   addTask() {
     this.obj = {
-      username: this.task,
-      userId: '1'
+      task: this.task,
+      userId: 1
     }
     this.user.postUser(this.obj).subscribe(data => {
       console.log(data);

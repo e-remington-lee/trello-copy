@@ -17,11 +17,6 @@ public class getUsers {
 
         return daoLayer.returnUsers(information);
     }
-
-//    @GetMapping("/api/getUser")
-//    public Map getUser(){
-//        return daoLayer.returnUsers();
-//    }
 }
 
 

@@ -34,11 +34,11 @@ public class daoLayer {
         }
     }
 
-    public static void createTask(String task) {
+    public static void createTask(String task, Integer userId) {
         try {
             Connection con = DriverManager.getConnection(url, connect());
             PreparedStatement st = con.prepareStatement(("INSERT into tasks (user_id, task_name) VALUES (?, ?)"));
-            st.setInt(1,1);
+            st.setInt(1,userId);
             st.setString(2,task);
             int rs = st.executeUpdate();
 //            con.commit();

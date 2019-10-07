@@ -2,7 +2,12 @@ package com.springBoot.toDoList.controller;
 
 import com.springBoot.toDoList.dao.daoLayer;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @RestController
 
@@ -11,16 +16,12 @@ public class postTask {
 
     @PostMapping("/api/userId")
     @ResponseStatus(HttpStatus.CREATED)
-    public String returnSomething(@RequestBody String task){
+    public String returnSomething(@RequestBody Map<String, Object> obj){
 
-
-        daoLayer.createTask(task);
-//        Integer userId = 1;
-//        String username = "Derock";
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("userId", userId);
-//        map.put("username", username);
-//        System.out.println(map);
+        String task = obj.get("task").toString();
+        Integer userId = (int) obj.get("userId");
+        System.out.println(task);
+        daoLayer.createTask(task, userId);
 
         return task;
     }

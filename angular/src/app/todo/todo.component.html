@@ -1,9 +1,9 @@
 <h1>Todo App!</h1>
 <form>
-    <input name='taskInput' [(ngModel)]='task'>
+    <input id='inputTask' name='taskInput' [(ngModel)]='task'>
 </form>
-<button (click)='addTask()'>Add Task</button>
+<button id='addTask' (click)='addTask()'>Add Task</button>
 <form>
-    <input name='get' [(ngModel)]='getParams'>
+    <input id='getUser' name='get' [(ngModel)]='getParams'>
 </form>
-<button (click)='getRequest()'>Test Get</button>
+<button id='getUser' (click)='getRequest()'>Test Get</button>
