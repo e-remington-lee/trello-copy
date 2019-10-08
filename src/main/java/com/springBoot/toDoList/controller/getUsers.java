@@ -1,6 +1,6 @@
 package com.springBoot.toDoList.controller;
 
-import com.springBoot.toDoList.dao.daoLayer;
+import com.springBoot.toDoList.data.staticData;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +14,7 @@ public class getUsers {
 
     @GetMapping("/api/get")
     public Map getMethod(@RequestParam String information){
-
-        return daoLayer.returnUsers(information);
+        return staticData.returnUsers(information);
     }
 }
 

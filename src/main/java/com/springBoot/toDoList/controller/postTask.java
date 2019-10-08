@@ -1,6 +1,5 @@
 package com.springBoot.toDoList.controller;
 
-import com.springBoot.toDoList.dao.daoLayer;
 import com.springBoot.toDoList.data.staticData;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +12,6 @@ import java.util.Map;
 
 @RestController
 public class postTask {
-
     @PostMapping("/api/createTask")
     @ResponseStatus(HttpStatus.CREATED)
     public String postTask(@RequestBody Map<String, Object> obj){
@@ -22,8 +20,7 @@ public class postTask {
             String task = obj.get("task").toString();
             Integer userId = (int) obj.get("userId");
             System.out.println(task);
-//            staticData.createTask(task, userId);
-            daoLayer.createTask(task, userId);
+            staticData.createTask(task, userId);
             return task;
         } catch(NullPointerException err) {
             throw new Error("Message Required");
