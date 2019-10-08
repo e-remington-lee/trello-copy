@@ -1,6 +1,7 @@
 package com.springBoot.toDoList.controller;
 
 import com.springBoot.toDoList.dao.daoLayer;
+import com.springBoot.toDoList.data.staticData;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,9 +18,11 @@ public class postTask {
     @ResponseStatus(HttpStatus.CREATED)
     public String postTask(@RequestBody Map<String, Object> obj){
         try {
+            staticData data = new staticData();
             String task = obj.get("task").toString();
             Integer userId = (int) obj.get("userId");
             System.out.println(task);
+//            staticData.createTask(task, userId);
             daoLayer.createTask(task, userId);
             return task;
         } catch(NullPointerException err) {

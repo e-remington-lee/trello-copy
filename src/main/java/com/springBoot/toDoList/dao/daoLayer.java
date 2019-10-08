@@ -7,15 +7,23 @@ import java.util.Properties;
 
 
 public class daoLayer {
-    private final static String url = "jdbc:postgresql://localhost/" + System.getenv("db_database_todolist");
+    private static final String url = "jdbc:postgresql://localhost/" + System.getenv("db_database_todolist");
 
-    public static Properties connect() {
+//    public String getURL() {
+//        return this.url;
+//    }
+
+    private static Properties connect() {
         Properties props = new Properties();
         props.setProperty("user", System.getenv("db_username"));
         props.setProperty("password", System.getenv("db_password"));
 //        props.setProperty("port", "8080");
         return props;
     }
+
+//    public Properties getConnect() {
+//        return connect();
+//    }
 
     public static Map returnUsers(String userId) {
         try {
