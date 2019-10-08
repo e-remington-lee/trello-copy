@@ -25,6 +25,5 @@ public class postTask {
         } catch(NullPointerException err) {
             throw new Error("Message Required");
         }
-
     }
 }

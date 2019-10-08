@@ -41,7 +41,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Todo App!</h1>\n<form>\n    <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n</form>\n<button id='addTask' (click)='addTask()'>Add Task</button>\n<form>\n    <input id='getUser' name='get' [(ngModel)]='getParams'>\n</form>\n<button id='getUser' (click)='getRequest()'>Test Get</button>\n"
+module.exports = "<h1>Todo App!</h1>\n<form>\n    <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n</form>\n<button id='addTask' (click)='addTask()'>Add Task</button>\n<form>\n    <input id='getUser' name='get' [(ngModel)]='getParams'>\n</form>\n<button id='getUser' (click)='getRequest()'>Test Get</button>\n<div *ngIf='show'>\n<button id='testButton'>Hello!!</button>\n</div>"
 
 /***/ }),
 
@@ -200,6 +200,10 @@ let TodoComponent = class TodoComponent {
     ngOnInit() {
     }
     addTask() {
+        this.show = true;
+        if (this.task === "" || this.task === null) {
+            return false;
+        }
         this.obj = {
             task: this.task,
             userId: 1

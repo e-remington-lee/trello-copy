@@ -11,6 +11,7 @@ export class TodoComponent implements OnInit {
   task: String;
   getParams: string;
   obj: Object;
+  show: boolean;
 
   constructor(private user: UsersService) { }
 
@@ -18,6 +19,10 @@ export class TodoComponent implements OnInit {
   }
 
   addTask() {
+    this.show = true;
+    if (this.task === "" || this.task === null) {
+      return false;
+    }
     this.obj = {
       task: this.task,
       userId: 1
