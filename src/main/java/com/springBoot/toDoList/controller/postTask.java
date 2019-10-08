@@ -16,10 +16,15 @@ public class postTask {
     @PostMapping("/api/createTask")
     @ResponseStatus(HttpStatus.CREATED)
     public String postTask(@RequestBody Map<String, Object> obj){
-        String task = obj.get("task").toString();
-        Integer userId = (int) obj.get("userId");
-        System.out.println(task);
-        daoLayer.createTask(task, userId);
-        return task;
+        try {
+            String task = obj.get("task").toString();
+            Integer userId = (int) obj.get("userId");
+            System.out.println(task);
+            daoLayer.createTask(task, userId);
+            return task;
+        } catch(NullPointerException err) {
+            throw new Error("Message Required");
+        }
+
     }
 }
