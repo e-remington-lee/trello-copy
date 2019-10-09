@@ -11,7 +11,6 @@ import java.util.Map;
 
 @RestController
 public class getUsers {
-
     @GetMapping("/api/get")
     public Map getMethod(@RequestParam String information){
         return staticData.returnUsers(information);

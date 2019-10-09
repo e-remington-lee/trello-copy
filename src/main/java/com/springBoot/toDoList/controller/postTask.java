@@ -16,7 +16,6 @@ public class postTask {
     @ResponseStatus(HttpStatus.CREATED)
     public String postTask(@RequestBody Map<String, Object> obj){
         try {
-            staticData data = new staticData();
             String task = obj.get("task").toString();
             Integer userId = (int) obj.get("userId");
             System.out.println(task);

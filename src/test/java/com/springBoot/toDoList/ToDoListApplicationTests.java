@@ -30,20 +30,20 @@ public class ToDoListApplicationTests {
 		}
 	}
 
-	@Test
-	public void test2() {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\erikl\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		driver.get("http://localhost:8080/");
-		driver.manage().window().maximize();
-		WebElement taskButton = driver.findElement(By.id("addTask"));
-		taskButton.click();
-		WebElement testButton = driver.findElement(By.id("testButton"));
-		String test = testButton.getText();
-		if (test.equalsIgnoreCase("hello!!")) {
-			System.out.println("works");
-		} else {
-			throw new Error("does not work");
-		}
-	}
+//	@Test
+//	public void test2() {
+//		System.setProperty("webdriver.chrome.driver", "C:\\Users\\erikl\\Downloads\\chromedriver_win32\\chromedriver.exe");
+//		WebDriver driver = new ChromeDriver();
+//		driver.get("http://localhost:8080/");
+//		driver.manage().window().maximize();
+//		WebElement taskButton = driver.findElement(By.id("addTask"));
+//		taskButton.click();
+//		WebElement testButton = driver.findElement(By.id("testButton"));
+//		String test = testButton.getText();
+//		if (test.equalsIgnoreCase("hello!!")) {
+//			System.out.println("works");
+//		} else {
+//			throw new Error("does not work");
+//		}
+//	}
 }
