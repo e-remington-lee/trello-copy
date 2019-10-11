@@ -25,8 +25,6 @@ public class staticData {
             } else {
                 return map;
             }
-
-
         } catch (SQLException err) {
             throw new Error(err.getMessage());
         }
