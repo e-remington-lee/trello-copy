@@ -34,6 +34,17 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/task/task.component.html":
+/*!********************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/task/task.component.html ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n"
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/index.js!./src/app/todo/todo.component.html":
 /*!********************************************************************!*\
   !*** ./node_modules/raw-loader!./src/app/todo/todo.component.html ***!
@@ -135,6 +146,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _todo_todo_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./todo/todo.component */ "./src/app/todo/todo.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _task_task_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./task/task.component */ "./src/app/task/task.component.ts");
+
 
 
 
@@ -149,7 +162,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
             _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
-            _todo_todo_component__WEBPACK_IMPORTED_MODULE_6__["TodoComponent"]
+            _todo_todo_component__WEBPACK_IMPORTED_MODULE_6__["TodoComponent"],
+            _task_task_component__WEBPACK_IMPORTED_MODULE_8__["TaskComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -161,6 +175,48 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })
 ], AppModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/task/task.component.scss":
+/*!******************************************!*\
+  !*** ./src/app/task/task.component.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Rhc2svdGFzay5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/task/task.component.ts":
+/*!****************************************!*\
+  !*** ./src/app/task/task.component.ts ***!
+  \****************************************/
+/*! exports provided: TaskComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TaskComponent", function() { return TaskComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let TaskComponent = class TaskComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+};
+TaskComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-task',
+        template: __webpack_require__(/*! raw-loader!./task.component.html */ "./node_modules/raw-loader/index.js!./src/app/task/task.component.html"),
+        styles: [__webpack_require__(/*! ./task.component.scss */ "./src/app/task/task.component.scss")]
+    })
+], TaskComponent);
 
 
 

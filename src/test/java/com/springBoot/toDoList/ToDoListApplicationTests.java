@@ -24,7 +24,7 @@ public class ToDoListApplicationTests extends openDriver {
 
 	@Test
 	public void testAddTAsk() {
-		buttonTests.testAddTask(driver);
+		addTaskTest.addTask(driver);
 	}
 
 	@Test
