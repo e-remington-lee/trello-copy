@@ -13,32 +13,32 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ToDoListApplicationTests {
+public class ToDoListApplicationTests extends openDriver {
 	private static WebDriver driver;
-	private static final String driverLocation = "C:\\Users\\erikl\\Downloads\\chromedriver_win32\\chromedriver.exe";
-	private static final String chromeDriver = "webdriver.chrome.driver";
-	private static final String url = "http://localhost:8080/";
+//	private static final String driverLocation = "C:\\Users\\erikl\\Downloads\\chromedriver_win32\\chromedriver.exe";
+//	private static final String chromeDriver = "webdriver.chrome.driver";
+//	private static final String url = "http://localhost:8080/";
 
 
 	@BeforeClass
 	public static void openDriver(){
-		System.setProperty(chromeDriver, driverLocation);
+		System.setProperty(getChromeDriver(), getDriverLocation());
 		driver = new ChromeDriver();
-		driver.get(url);
+		driver.get(getUrl());
 		driver.manage().window().maximize();
 	}
 
 	@Test
 	public void contextLoads() {
-		WebElement taskButton = driver.findElement(By.id("addTask"));
-		taskButton.click();
-		WebElement testButton = driver.findElement(By.id("testButton"));
-		String test = testButton.getText();
-		if (test.equalsIgnoreCase("hello!!")) {
-			System.out.println("Task successfully generated");
-		} else {
-			throw new Error("Task not generated");
-		}
+//		WebElement taskButton = driver.findElement(By.id("addTask"));
+//		taskButton.click();
+//		WebElement testButton = driver.findElement(By.id("testButton"));
+//		String test = testButton.getText();
+//		if (test.equalsIgnoreCase("hello!!")) {
+//			System.out.println("Task successfully generated");
+//		} else {
+//			throw new Error("Task not generated");
+//		}
 	}
 
 	@Test
