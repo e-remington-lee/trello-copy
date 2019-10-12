@@ -1,5 +1,6 @@
 package com.springBoot.toDoList;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,18 +20,13 @@ public class ToDoListApplicationTests {
 	private static final String url = "http://localhost:8080/";
 
 
-	@BeforeClass
+		@BeforeClass
 	public static void openDriver(){
 		System.setProperty(chromeDriver, driverLocation);
 		driver = new ChromeDriver();
 		driver.get(url);
 		driver.manage().window().maximize();
 	}
-//	public static WebDriver openDriver() {
-//		System.setProperty("webdriver.chrome.driver", "C:\\Users\\erikl\\Downloads\\chromedriver_win32\\chromedriver.exe");
-//		WebDriver driver = new ChromeDriver();
-//		return driver;
-//	}
 
 	@Test
 	public void contextLoads() {
@@ -67,9 +63,9 @@ public class ToDoListApplicationTests {
 		}
 	}
 
-//	@AfterClass
-//	public static void closeDriver(){
-//		driver.quit();
-//	}
-
+	@AfterClass
+	public static void closeDriver(){
+		driver.quit();
+	}
 }
+

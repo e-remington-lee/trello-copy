@@ -1,6 +1,12 @@
 package com.springBoot.toDoList;
 
-public class openDriver {
-//    System.setProperty("webdriver.chrome.driver", "C:\\Users\\erikl\\Downloads\\chromedriver_win32\\chromedriver.exe");
-//    WebDriver driver = new ChromeDriver();
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class openDriver extends ToDoListApplicationTests  {
+
 }
