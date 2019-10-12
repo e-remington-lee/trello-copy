@@ -14,13 +14,12 @@ import java.util.Map;
 public class postTask {
     @PostMapping("/api/createTask")
     @ResponseStatus(HttpStatus.CREATED)
-    public String postTask(@RequestBody Map<String, Object> obj){
+    public void postTask(@RequestBody Map<String, Object> obj){
         try {
             String task = obj.get("task").toString();
             Integer userId = (int) obj.get("userId");
             System.out.println(task);
             staticData.createTask(task, userId);
-            return task;
         } catch(NullPointerException err) {
             throw new Error("Message Required");
         }

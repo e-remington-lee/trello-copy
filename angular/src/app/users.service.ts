@@ -12,8 +12,8 @@ export class UsersService {
     return this.http.post('/api/createTask', user)
   }
 
-  getUser(params) {
-    const options = new HttpParams().set('information', params)
+  getTasks(params) {
+    const options = new HttpParams().set('userId', params)
     return this.http.get('/api/get', {params: options})
   }
 }

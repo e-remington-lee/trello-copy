@@ -8,10 +8,10 @@ import { UsersService } from '../users.service';
 })
 export class TodoComponent implements OnInit {
 
-  task: String;
-  getParams: string;
+  task: String = null;
   obj: Object;
   show: boolean;
+  userId: number = 1;
 
   constructor(private user: UsersService) { }
 
@@ -19,7 +19,6 @@ export class TodoComponent implements OnInit {
   }
 
   addTask() {
-    this.show = true;
     if (this.task === "" || this.task === null) {
       return false;
     }
@@ -27,15 +26,14 @@ export class TodoComponent implements OnInit {
       task: this.task,
       userId: 1
     }
-    this.user.postUser(this.obj).subscribe(data => {
-      console.log(data);
-    }
-    )
+    this.user.postUser(this.obj).subscribe(() => {
+      this.show = true;
+    });
   }
 
-  getRequest() {
-    this.user.getUser(this.getParams).subscribe(data => {
-      console.log(data)
-    })
+  getTasks() {
+    this.user.getTasks(this.userId).subscribe(data => {
+      console.log(data);
+    });
   }
 }

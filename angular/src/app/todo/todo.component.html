@@ -3,10 +3,13 @@
     <input id='inputTask' name='taskInput' [(ngModel)]='task'>
 </form>
 <button id='addTask' (click)='addTask()'>Add Task</button>
-<form>
-    <input id='getUser' name='get' [(ngModel)]='getParams'>
-</form>
-<button id='getUser' (click)='getRequest()'>Test Get</button>
 <div *ngIf='show'>
-<button id='testButton'>Hello!!</button>
-</div>
+    <button id='testButton'>Hello!!</button>
+    </div>
+<!-- <form>
+    <input id='getUser' name='get' [(ngModel)]='getParams'>
+</form> -->
+<button id='getUser' (click)='getTasks()'>Test Get</button>
+<!-- <app-task *ngFor='let task of taskList' [taskList]='taskList'></app-task> -->
+
+

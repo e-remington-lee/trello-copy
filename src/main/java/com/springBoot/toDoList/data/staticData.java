@@ -8,20 +8,20 @@ import java.util.Map;
 
 public class staticData {
 
-    public static Map returnUsers(String userId) {
+    public static Map returnTasks(Integer userId) {
         try {
             Connection con = DriverManager.getConnection(daoLayer.getURL(), daoLayer.getConnect());
-            PreparedStatement st = con.prepareStatement(("SELECT * FROM users WHERE username = (?)"));
-            st.setString(1,userId);
+            PreparedStatement st = con.prepareStatement(("SELECT task_name, completed FROM tasks WHERE user_id = (?)"));
+            st.setInt(1,userId);
             ResultSet rs = st.executeQuery();
-            Map<Integer, String> map = new HashMap<>();
+            Map<String, Boolean> map = new HashMap<>();
 
             while (rs.next()) {
-                map.put(rs.getInt(1), rs.getString(2));
+                map.put(rs.getString(1), rs.getBoolean(2));
             }
             con.close();
             if (map.isEmpty()) {
-                throw new Error("No user found");
+                throw new Error("No tasks found");
             } else {
                 return map;
             }

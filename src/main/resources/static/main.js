@@ -52,7 +52,7 @@ module.exports = "\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Todo App!</h1>\n<form>\n    <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n</form>\n<button id='addTask' (click)='addTask()'>Add Task</button>\n<form>\n    <input id='getUser' name='get' [(ngModel)]='getParams'>\n</form>\n<button id='getUser' (click)='getRequest()'>Test Get</button>\n<div *ngIf='show'>\n<button id='testButton'>Hello!!</button>\n</div>"
+module.exports = "<h1>Todo App!</h1>\n<form>\n    <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n</form>\n<button id='addTask' (click)='addTask()'>Add Task</button>\n<div *ngIf='show'>\n    <button id='testButton'>Hello!!</button>\n    </div>\n<!-- <form>\n    <input id='getUser' name='get' [(ngModel)]='getParams'>\n</form> -->\n<button id='getUser' (click)='getTasks()'>Test Get</button>\n<!-- <app-task *ngFor='let task of taskList' [taskList]='taskList'></app-task> -->\n\n\n"
 
 /***/ }),
 
@@ -252,11 +252,12 @@ __webpack_require__.r(__webpack_exports__);
 let TodoComponent = class TodoComponent {
     constructor(user) {
         this.user = user;
+        this.task = null;
+        this.userId = 1;
     }
     ngOnInit() {
     }
     addTask() {
-        this.show = true;
         if (this.task === "" || this.task === null) {
             return false;
         }
@@ -264,12 +265,12 @@ let TodoComponent = class TodoComponent {
             task: this.task,
             userId: 1
         };
-        this.user.postUser(this.obj).subscribe(data => {
-            console.log(data);
+        this.user.postUser(this.obj).subscribe(() => {
+            this.show = true;
         });
     }
-    getRequest() {
-        this.user.getUser(this.getParams).subscribe(data => {
+    getTasks() {
+        this.user.getTasks(this.userId).subscribe(data => {
             console.log(data);
         });
     }
@@ -312,8 +313,8 @@ let UsersService = class UsersService {
     postUser(user) {
         return this.http.post('/api/createTask', user);
     }
-    getUser(params) {
-        const options = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('information', params);
+    getTasks(params) {
+        const options = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('userId', params);
         return this.http.get('/api/get', { params: options });
     }
 };
