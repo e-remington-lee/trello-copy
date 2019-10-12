@@ -20,7 +20,7 @@ public class ToDoListApplicationTests {
 	private static final String url = "http://localhost:8080/";
 
 
-		@BeforeClass
+	@BeforeClass
 	public static void openDriver(){
 		System.setProperty(chromeDriver, driverLocation);
 		driver = new ChromeDriver();
@@ -44,7 +44,6 @@ public class ToDoListApplicationTests {
 	@Test
 	public void checkButtonText(){
 		WebElement enterTaskButton = driver.findElement(By.id("addTask"));
-
 		String task = enterTaskButton.getText();
 		System.out.println(task);
 		WebElement testGet = driver.findElement(By.id("getUser"));
