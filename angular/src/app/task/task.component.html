@@ -1,1 +1,8 @@
-
+<div *ngFor='let task of taskList' class='card' id='taskListCard'>
+    <div class='card-body'>
+        {{task.task}}
+        <button>Complete</button>
+        <button>Delete</button>
+    </div>
+    
+</div>

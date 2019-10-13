@@ -10,7 +10,8 @@ export class TodoComponent implements OnInit {
 
   task: String = null;
   obj: Object;
-  show: boolean;
+  taskList: Object;
+  show: boolean;  
   userId: number = 1;
 
   constructor(private user: UsersService) { }
@@ -33,6 +34,7 @@ export class TodoComponent implements OnInit {
 
   getTasks() {
     this.user.getTasks(this.userId).subscribe(data => {
+      this.taskList = data;
       console.log(data);
     });
   }

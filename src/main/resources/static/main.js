@@ -41,7 +41,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n"
+module.exports = "<div *ngFor='let task of taskList' class='card' id='taskListCard'>\n    <div class='card-body'>\n        {{task.task}}\n        <button>Complete</button>\n        <button>Delete</button>\n    </div>\n    \n</div>\n"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Todo App!</h1>\n<form>\n    <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n</form>\n<button id='addTask' (click)='addTask()'>Add Task</button>\n<div *ngIf='show'>\n    <button id='testButton'>Hello!!</button>\n    </div>\n<!-- <form>\n    <input id='getUser' name='get' [(ngModel)]='getParams'>\n</form> -->\n<button id='getUser' (click)='getTasks()'>Test Get</button>\n<!-- <app-task *ngFor='let task of taskList' [taskList]='taskList'></app-task> -->\n\n\n"
+module.exports = "<h1>Todo App!</h1>\n<form>\n    <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n</form>\n<button id='addTask' (click)='addTask()'>Add Task</button>\n<div *ngIf='show'>\n    <button id='testButton'>Hello!!</button>\n    </div>\n<!-- <form>\n    <input id='getUser' name='get' [(ngModel)]='getParams'>\n</form> -->\n<button id='getUser' (click)='getTasks()'>Test Get</button>\n<app-task [taskList]='taskList'></app-task>\n\n\n"
 
 /***/ }),
 
@@ -169,7 +169,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"]
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"],
         ],
         providers: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
@@ -187,7 +187,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Rhc2svdGFzay5jb21wb25lbnQuc2NzcyJ9 */"
+module.exports = "#taskListCard {\n  justify-items: center;\n  width: 50%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFzay9EOlxcTWFzdGVybWluZFxcdG9Eb0xpc3QzXFx0b0RvTGlzdFxcYW5ndWxhci9zcmNcXGFwcFxcdGFza1xcdGFzay5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdGFzay90YXNrLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0kscUJBQUE7RUFDQSxVQUFBO0FDQUoiLCJmaWxlIjoic3JjL2FwcC90YXNrL3Rhc2suY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuI3Rhc2tMaXN0Q2FyZCB7XHJcbiAgICBqdXN0aWZ5LWl0ZW1zOiBjZW50ZXI7XHJcbiAgICB3aWR0aDogNTAlO1xyXG59IiwiI3Rhc2tMaXN0Q2FyZCB7XG4gIGp1c3RpZnktaXRlbXM6IGNlbnRlcjtcbiAgd2lkdGg6IDUwJTtcbn0iXX0= */"
 
 /***/ }),
 
@@ -210,6 +210,9 @@ let TaskComponent = class TaskComponent {
     ngOnInit() {
     }
 };
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], TaskComponent.prototype, "taskList", void 0);
 TaskComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-task',
@@ -271,6 +274,7 @@ let TodoComponent = class TodoComponent {
     }
     getTasks() {
         this.user.getTasks(this.userId).subscribe(data => {
+            this.taskList = data;
             console.log(data);
         });
     }
