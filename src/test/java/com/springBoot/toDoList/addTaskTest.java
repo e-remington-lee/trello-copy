@@ -6,8 +6,10 @@ import org.openqa.selenium.WebElement;
 
 public class addTaskTest {
     public static void addTask(WebDriver driver){
-        WebElement taskButton = driver.findElement(By.id("addTask"));
-        taskButton.click();
+        WebElement element = driver.findElement(By.id("inputTask"));
+        element.sendKeys("New Task Item");
+        element.findElement(By.id("AddTask"));
+        element.click();
         WebElement testButton = driver.findElement(By.id("testButton"));
         String test = testButton.getText();
         if (test.equalsIgnoreCase("hello!!")) {

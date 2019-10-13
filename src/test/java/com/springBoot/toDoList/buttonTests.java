@@ -1,27 +1,25 @@
 package com.springBoot.toDoList;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 
 public class buttonTests {
 
     public static void testGetUser(WebDriver driver) {
-//        WebElement enterTaskButton = driver.findElement(By.id("addTask"));
-//        String task = enterTaskButton.getText();
-//        System.out.println(task);
-//        WebElement testGet = driver.findElement(By.id("getUser"));
-//        String userButton = testGet.getText();
-//        System.out.println(userButton);
-//        if (task.equalsIgnoreCase("Add Task")) {
-//            System.out.println("Task test passes");
-//        } else {
-//            throw new Error("Task button does not match");
-//        }
-//
-//        if (userButton.equalsIgnoreCase("Test Get")) {
-//            System.out.println("Get button basses");
-//        } else{
-//            System.out.println("error 2");
-//        }
+
+        WebElement element = driver.findElement(By.id("getUser"));
+        element.click();
+        element.findElement(By.name("completeButton"));
+        String button = element.getText();
+
+        if (button.equalsIgnoreCase("Complete")) {
+            System.out.println("Button is Complete");
+        } else {
+            throw new Error("Button not complete");
+        }
+
+
     }
 }
