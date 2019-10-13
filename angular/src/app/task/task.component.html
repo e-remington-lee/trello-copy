@@ -1,8 +1,8 @@
 <div *ngFor='let task of taskList' class='card'>
-    <div id='taskItem' class='card-body'>
-        {{task.task}}
+    <div id='taskItem' class='card-body'>     
         <div class='form-check form-check-inline'>
-            <mat-icon class='icons' (click)='checkTask()'>check_circle</mat-icon>
+            <h5 [ngStyle]="{'text-decoration':checkTask(task.completed)}">{{task.task}}</h5>
+            <mat-icon class='icons' (click)='lineThroughChange(task.completed)'>check_circle</mat-icon>
             <mat-icon class='icons' (click)='deleteTask()'>delete</mat-icon>
         </div>   
     </div>

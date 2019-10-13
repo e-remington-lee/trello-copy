@@ -41,7 +41,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngFor='let task of taskList' class='card'>\n    <div id='taskItem' class='card-body'>\n        {{task.task}}\n        <div class='form-check form-check-inline'>\n            <mat-icon class='icons' (click)='checkTask()'>check_circle</mat-icon>\n            <mat-icon class='icons' (click)='deleteTask()'>delete</mat-icon>\n        </div>   \n    </div>\n</div>\n"
+module.exports = "<div *ngFor='let task of taskList' class='card'>\n    <div id='taskItem' class='card-body'>     \n        <div class='form-check form-check-inline'>\n            <h5 [ngStyle]=\"{'text-decoration':checkTask(task.completed)}\">{{task.task}}</h5>\n            <mat-icon class='icons' (click)='lineThroughChange(task.completed)'>check_circle</mat-icon>\n            <mat-icon class='icons' (click)='deleteTask()'>delete</mat-icon>\n        </div>   \n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -215,16 +215,32 @@ __webpack_require__.r(__webpack_exports__);
 
 let TaskComponent = class TaskComponent {
     constructor() {
-        this.isChecked = false;
+        this.isCompleted = false;
     }
     ngOnInit() {
     }
     deleteTask() {
         console.log("delete task");
     }
-    checkTask() {
-        this.isChecked = true;
-        console.log("check task");
+    checkTask(checked) {
+        switch (checked) {
+            case true:
+                return 'line-through';
+            case false:
+                return null;
+        }
+    }
+    lineThroughChange(checked) {
+        if (checked) {
+            this.isCompleted = false;
+            this.checkTask(this.isCompleted);
+            console.log('false one');
+        }
+        else {
+            this.isCompleted = true;
+            this.checkTask(this.isCompleted);
+            console.log('true one');
+        }
     }
 };
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
