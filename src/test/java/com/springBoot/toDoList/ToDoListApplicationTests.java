@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.concurrent.TimeUnit;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ToDoListApplicationTests extends openDriver {
@@ -19,6 +21,7 @@ public class ToDoListApplicationTests extends openDriver {
 		System.setProperty(getChromeDriver(), getDriverLocation());
 		driver = new ChromeDriver();
 		driver.get(getUrl());
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
 

@@ -8,8 +8,8 @@ public class addTaskTest {
     public static void addTask(WebDriver driver){
         WebElement element = driver.findElement(By.id("inputTask"));
         element.sendKeys("New Task Item");
-        element.findElement(By.id("AddTask"));
-        element.click();
+        WebElement element2 = driver.findElement(By.id("addTask"));
+        element2.click();
         WebElement testButton = driver.findElement(By.id("testButton"));
         String test = testButton.getText();
         if (test.equalsIgnoreCase("hello!!")) {

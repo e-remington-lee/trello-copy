@@ -11,8 +11,8 @@ public class buttonTests {
 
         WebElement element = driver.findElement(By.id("getUser"));
         element.click();
-        element.findElement(By.name("completeButton"));
-        String button = element.getText();
+        WebElement element2 = driver.findElement(By.xpath(".//*[@name='completeButton']"));
+        String button = element2.getText();
 
         if (button.equalsIgnoreCase("Complete")) {
             System.out.println("Button is Complete");
