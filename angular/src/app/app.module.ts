@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskComponent } from './task/task.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule, MatIconModule } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +21,10 @@ import { TaskComponent } from './task/task.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

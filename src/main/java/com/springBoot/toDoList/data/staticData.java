@@ -28,7 +28,6 @@ public class staticData {
             if (array.length() == 0) {
                 throw new Error("No tasks found");
             } else {
-                System.out.println(array);
                 return array.toString();
             }
         } catch (SQLException err) {

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class getAllTasks {
     @GetMapping("/api/get")
     public String getTasks(@RequestParam Integer userId){
-        System.out.println(userId);
         return staticData.returnTasks(userId);
     }
 }

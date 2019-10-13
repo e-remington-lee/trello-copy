@@ -1,8 +1,9 @@
 <div *ngFor='let task of taskList' class='card'>
-    <div class='card-body'>
+    <div id='taskItem' class='card-body'>
         {{task.task}}
-        <button name='completeButton'>Complete</button>
-        <button name='deleteButton'>Delete</button>
+        <div class='form-check form-check-inline'>
+            <mat-icon class='icons' (click)='checkTask()'>check_circle</mat-icon>
+            <mat-icon class='icons' (click)='deleteTask()'>delete</mat-icon>
+        </div>   
     </div>
-    
 </div>

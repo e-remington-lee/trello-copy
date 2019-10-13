@@ -41,7 +41,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngFor='let task of taskList' class='card'>\n    <div class='card-body'>\n        {{task.task}}\n        <button name='completeButton'>Complete</button>\n        <button name='deleteButton'>Delete</button>\n    </div>\n    \n</div>\n"
+module.exports = "<div *ngFor='let task of taskList' class='card'>\n    <div id='taskItem' class='card-body'>\n        {{task.task}}\n        <div class='form-check form-check-inline'>\n            <mat-icon class='icons' (click)='checkTask()'>check_circle</mat-icon>\n            <mat-icon class='icons' (click)='deleteTask()'>delete</mat-icon>\n        </div>   \n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -147,6 +147,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _todo_todo_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./todo/todo.component */ "./src/app/todo/todo.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _task_task_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./task/task.component */ "./src/app/task/task.component.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm2015/animations.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
+
+
 
 
 
@@ -170,6 +174,10 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"],
+            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatButtonModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatCheckboxModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatIconModule"]
         ],
         providers: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
@@ -187,7 +195,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card {\n  justify-items: center;\n  width: 50%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFzay9EOlxcTWFzdGVybWluZFxcdG9Eb0xpc3QzXFx0b0RvTGlzdFxcYW5ndWxhci9zcmNcXGFwcFxcdGFza1xcdGFzay5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdGFzay90YXNrLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0kscUJBQUE7RUFDQSxVQUFBO0FDQUoiLCJmaWxlIjoic3JjL2FwcC90YXNrL3Rhc2suY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuLmNhcmQge1xyXG4gICAganVzdGlmeS1pdGVtczogY2VudGVyO1xyXG4gICAgd2lkdGg6IDUwJTtcclxufSIsIi5jYXJkIHtcbiAganVzdGlmeS1pdGVtczogY2VudGVyO1xuICB3aWR0aDogNTAlO1xufSJdfQ== */"
+module.exports = ".card {\n  justify-items: center;\n  width: 50%;\n}\n\n.icons:hover {\n  cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFzay9EOlxcTWFzdGVybWluZFxcdG9Eb0xpc3QzXFx0b0RvTGlzdFxcYW5ndWxhci9zcmNcXGFwcFxcdGFza1xcdGFzay5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdGFzay90YXNrLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0kscUJBQUE7RUFDQSxVQUFBO0FDQUo7O0FER0E7RUFDSSxlQUFBO0FDQUoiLCJmaWxlIjoic3JjL2FwcC90YXNrL3Rhc2suY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuLmNhcmQge1xyXG4gICAganVzdGlmeS1pdGVtczogY2VudGVyO1xyXG4gICAgd2lkdGg6IDUwJTtcclxufVxyXG5cclxuLmljb25zOmhvdmVye1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG59IiwiLmNhcmQge1xuICBqdXN0aWZ5LWl0ZW1zOiBjZW50ZXI7XG4gIHdpZHRoOiA1MCU7XG59XG5cbi5pY29uczpob3ZlciB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn0iXX0= */"
 
 /***/ }),
 
@@ -206,8 +214,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let TaskComponent = class TaskComponent {
-    constructor() { }
+    constructor() {
+        this.isChecked = false;
+    }
     ngOnInit() {
+    }
+    deleteTask() {
+        console.log("delete task");
+    }
+    checkTask() {
+        this.isChecked = true;
+        console.log("check task");
     }
 };
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
