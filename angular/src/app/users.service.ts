@@ -16,4 +16,8 @@ export class UsersService {
     const options = new HttpParams().set('userId', params)
     return this.http.get('/api/get', {params: options})
   }
+
+  completeTask(params) {
+    return this.http.post('/api/completeTask', params)
+  }
 }

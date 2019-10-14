@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { UsersService } from '../users.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ export class TaskComponent implements OnInit {
   @Input() task: Object;
   @Input() index: number;
   isCompleted: boolean;
-  constructor() { }
+  constructor(private user: UsersService) { }
 
   ngOnInit() {
 
@@ -35,7 +36,7 @@ export class TaskComponent implements OnInit {
     var x = document.getElementById(`${this.index}`);
     if (x.style.textDecoration === 'line-through') {
       document.getElementById(`${this.index}`).style.textDecoration = 'none';
-      //http request to change from true to false
+      this.user.completeTask(true)
     } else if (x.style.textDecoration === 'none') {
       document.getElementById(`${this.index}`).style.textDecoration = 'line-through';
       //http request to change from false to true
