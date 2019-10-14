@@ -41,7 +41,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngFor='let task of taskList' class='card'>\n    <div id='taskItem' class='card-body'>     \n        <div class='form-check form-check-inline'>\n            <h5 [ngStyle]=\"{'text-decoration':checkTask(task.completed)}\">{{task.task}}</h5>\n            <mat-icon class='icons' (click)='lineThroughChange(task.completed)'>check_circle</mat-icon>\n            <mat-icon class='icons' (click)='deleteTask()'>delete</mat-icon>\n        </div>   \n    </div>\n</div>\n"
+module.exports = "<div *ngFor='let task of taskList' class='card'>\n    <div id='taskItem' class='card-body'>     \n        <div class='form-check form-check-inline'>\n            <h5 id='taskText' [ngStyle]=\"{'text-decoration':checkTask(task.completed)}\">{{task.task}}</h5>\n            <mat-icon class='icons' (click)='lineThroughChange()'>check_circle</mat-icon>\n            <mat-icon class='icons' (click)='deleteTask()'>delete</mat-icon>\n        </div>   \n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -214,32 +214,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let TaskComponent = class TaskComponent {
-    constructor() {
-        this.isCompleted = false;
-    }
+    constructor() { }
     ngOnInit() {
     }
     deleteTask() {
         console.log("delete task");
     }
     checkTask(checked) {
+        this.isCompleted = checked;
         switch (checked) {
             case true:
                 return 'line-through';
             case false:
-                return null;
+                return 'none';
         }
     }
-    lineThroughChange(checked) {
-        if (checked) {
-            this.isCompleted = false;
-            this.checkTask(this.isCompleted);
-            console.log('false one');
+    lineThroughChange() {
+        var x = document.getElementById("taskText");
+        if (x.style.textDecoration === 'line-through') {
+            document.getElementById("taskText").style.textDecoration = 'none';
+            //http request to change from true to false
         }
-        else {
-            this.isCompleted = true;
-            this.checkTask(this.isCompleted);
-            console.log('true one');
+        else if (x.style.textDecoration === 'none') {
+            document.getElementById("taskText").style.textDecoration = 'line-through';
+            //http request to change from false to true
         }
     }
 };

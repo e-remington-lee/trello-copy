@@ -9,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TaskComponent implements OnInit {
 
   @Input() taskList: Object;
-  isCompleted: boolean = false;
+  isCompleted: boolean;
   constructor() { }
 
   ngOnInit() {
@@ -21,24 +21,23 @@ export class TaskComponent implements OnInit {
   }
 
   checkTask(checked) {
+    this.isCompleted = checked;
     switch (checked) {
       case true:
         return 'line-through';
       case false:
-        return null;
+        return 'none';
     }
   }
 
-  lineThroughChange(checked) {
-    if (checked) {
-      
-      this.isCompleted = false;
-      this.checkTask(this.isCompleted);
-      console.log('false one');
-    } else {
-      this.isCompleted = true;
-      this.checkTask(this.isCompleted);
-      console.log('true one');
+  lineThroughChange() {
+    var x = document.getElementById("taskText");
+    if (x.style.textDecoration === 'line-through') {
+      document.getElementById("taskText").style.textDecoration = 'none';
+      //http request to change from true to false
+    } else if (x.style.textDecoration === 'none') {
+      document.getElementById("taskText").style.textDecoration = 'line-through';
+      //http request to change from false to true
     }
   }
 }
