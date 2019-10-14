@@ -41,7 +41,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngFor='let task of taskList' class='card'>\n    <div id='taskItem' class='card-body'>     \n        <div class='form-check form-check-inline'>\n            <h5 id='taskText' [ngStyle]=\"{'text-decoration':checkTask(task.completed)}\">{{task.task}}</h5>\n            <mat-icon class='icons' (click)='lineThroughChange()'>check_circle</mat-icon>\n            <mat-icon class='icons' (click)='deleteTask()'>delete</mat-icon>\n        </div>   \n    </div>\n</div>\n"
+module.exports = "<div class='card'>\n    <div id='taskItem' class='card-body'>     \n        <div class='form-check form-check-inline'>\n            <h5 id={{index}} [ngStyle]=\"{'text-decoration':checkTask(task.completed)}\">{{task.task}}</h5>\n            <mat-icon class='icons' (click)='lineThroughChange()'>check_circle</mat-icon>\n            <mat-icon class='icons' (click)='deleteTask()'>delete</mat-icon>\n        </div>   \n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<div *ngFor='let task of taskList' class='card'>\n    <div id=
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Todo App!</h1>\n<form>\n    <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n</form>\n<button id='addTask' (click)='addTask()'>Add Task</button>\n<div *ngIf='show'>\n    <button id='testButton'>Hello!!</button>\n    </div>\n<!-- <form>\n    <input id='getUser' name='get' [(ngModel)]='getParams'>\n</form> -->\n<button id='getUser' (click)='getTasks()'>Test Get</button>\n<app-task [taskList]='taskList'></app-task>\n\n\n"
+module.exports = "<h1>Todo App!</h1>\n<form>\n    <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n</form>\n<button id='addTask' (click)='addTask()'>Add Task</button>\n<div *ngIf='show'>\n    <button id='testButton'>Hello!!</button>\n    </div>\n<button id='getUser' (click)='getTasks()'>Test Get</button>\n<app-task *ngFor='let task of taskList; let i = index' [task]='task' [index]='i'></app-task>\n\n\n"
 
 /***/ }),
 
@@ -230,20 +230,23 @@ let TaskComponent = class TaskComponent {
         }
     }
     lineThroughChange() {
-        var x = document.getElementById("taskText");
+        var x = document.getElementById(`${this.index}`);
         if (x.style.textDecoration === 'line-through') {
-            document.getElementById("taskText").style.textDecoration = 'none';
+            document.getElementById(`${this.index}`).style.textDecoration = 'none';
             //http request to change from true to false
         }
         else if (x.style.textDecoration === 'none') {
-            document.getElementById("taskText").style.textDecoration = 'line-through';
+            document.getElementById(`${this.index}`).style.textDecoration = 'line-through';
             //http request to change from false to true
         }
     }
 };
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
-], TaskComponent.prototype, "taskList", void 0);
+], TaskComponent.prototype, "task", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], TaskComponent.prototype, "index", void 0);
 TaskComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-task',

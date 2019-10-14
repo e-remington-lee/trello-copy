@@ -8,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TaskComponent implements OnInit {
 
-  @Input() taskList: Object;
+  @Input() task: Object;
+  @Input() index: number;
   isCompleted: boolean;
   constructor() { }
 
@@ -31,12 +32,12 @@ export class TaskComponent implements OnInit {
   }
 
   lineThroughChange() {
-    var x = document.getElementById("taskText");
+    var x = document.getElementById(`${this.index}`);
     if (x.style.textDecoration === 'line-through') {
-      document.getElementById("taskText").style.textDecoration = 'none';
+      document.getElementById(`${this.index}`).style.textDecoration = 'none';
       //http request to change from true to false
     } else if (x.style.textDecoration === 'none') {
-      document.getElementById("taskText").style.textDecoration = 'line-through';
+      document.getElementById(`${this.index}`).style.textDecoration = 'line-through';
       //http request to change from false to true
     }
   }
