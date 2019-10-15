@@ -9,7 +9,7 @@ import { UsersService } from '../users.service';
 })
 export class TaskComponent implements OnInit {
 
-  @Input() task: Object;
+  @Input() task: any;
   @Input() index: number;
   isCompleted: boolean;
   constructor(private user: UsersService) { }
@@ -18,7 +18,11 @@ export class TaskComponent implements OnInit {
 
   }
 
-  deleteTask(){
+  abc(bob) {
+    console.log(bob)
+  }
+
+  deleteTask(taskId){
     console.log("delete task");
   }
 
@@ -32,14 +36,24 @@ export class TaskComponent implements OnInit {
     }
   }
 
-  lineThroughChange() {
-    var x = document.getElementById(`${this.index}`);
-    if (x.style.textDecoration === 'line-through') {
+  lineThroughChange(taskId) {
+    var element = document.getElementById(`${this.index}`);
+    if (element.style.textDecoration === 'line-through') {
       document.getElementById(`${this.index}`).style.textDecoration = 'none';
-      this.user.completeTask(true)
-    } else if (x.style.textDecoration === 'none') {
+      var falseParam = {
+        'task_id': taskId,
+        'task': element.innerHTML,
+        'completed': true
+      }
+      return this.user.completeTask(falseParam).subscribe();
+    } else if (element.style.textDecoration === 'none') {
       document.getElementById(`${this.index}`).style.textDecoration = 'line-through';
-      //http request to change from false to true
+      var trueParam = {
+        'task_id': taskId,
+        'task': element.innerHTML,
+        'completed': false
+      }
+      return this.user.completeTask(trueParam).subscribe();
     }
   }
 }

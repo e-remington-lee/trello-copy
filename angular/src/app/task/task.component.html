@@ -1,9 +1,10 @@
 <div class='card'>
     <div id='taskItem' class='card-body'>     
         <div class='form-check form-check-inline'>
-            <h5 id={{index}} [ngStyle]="{'text-decoration':checkTask(task.completed)}">{{task.task}}</h5>
-            <mat-icon class='icons' (click)='lineThroughChange()'>check_circle</mat-icon>
-            <mat-icon class='icons' (click)='deleteTask()'>delete</mat-icon>
+            <h5 contenteditable="true" id={{index}} [ngStyle]="{'text-decoration':checkTask(task.completed)}" 
+            (keydown.enter)="abc(task.task)">{{task.task}}</h5>
+            <mat-icon class='icons' (click)='lineThroughChange(task.task_id)'>check_circle</mat-icon>
+            <mat-icon class='icons' (click)='deleteTask(task.task_id)'>delete</mat-icon>
         </div>   
     </div>
 </div>

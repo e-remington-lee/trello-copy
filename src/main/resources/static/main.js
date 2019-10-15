@@ -41,7 +41,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='card'>\n    <div id='taskItem' class='card-body'>     \n        <div class='form-check form-check-inline'>\n            <h5 id={{index}} [ngStyle]=\"{'text-decoration':checkTask(task.completed)}\">{{task.task}}</h5>\n            <mat-icon class='icons' (click)='lineThroughChange()'>check_circle</mat-icon>\n            <mat-icon class='icons' (click)='deleteTask()'>delete</mat-icon>\n        </div>   \n    </div>\n</div>\n"
+module.exports = "<div class='card'>\n    <div id='taskItem' class='card-body'>     \n        <div class='form-check form-check-inline'>\n            <h5 contenteditable=\"true\" id={{index}} [ngStyle]=\"{'text-decoration':checkTask(task.completed)}\" \n            (keydown.enter)=\"abc(task.task)\">{{task.task}}</h5>\n            <mat-icon class='icons' (click)='lineThroughChange(task.task_id)'>check_circle</mat-icon>\n            <mat-icon class='icons' (click)='deleteTask(task.task_id)'>delete</mat-icon>\n        </div>   \n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -211,13 +211,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TaskComponent", function() { return TaskComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _users_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../users.service */ "./src/app/users.service.ts");
+
 
 
 let TaskComponent = class TaskComponent {
-    constructor() { }
+    constructor(user) {
+        this.user = user;
+    }
     ngOnInit() {
     }
-    deleteTask() {
+    abc(bob) {
+        console.log(bob);
+    }
+    deleteTask(taskId) {
         console.log("delete task");
     }
     checkTask(checked) {
@@ -229,18 +236,31 @@ let TaskComponent = class TaskComponent {
                 return 'none';
         }
     }
-    lineThroughChange() {
-        var x = document.getElementById(`${this.index}`);
-        if (x.style.textDecoration === 'line-through') {
+    lineThroughChange(taskId) {
+        var element = document.getElementById(`${this.index}`);
+        if (element.style.textDecoration === 'line-through') {
             document.getElementById(`${this.index}`).style.textDecoration = 'none';
-            //http request to change from true to false
+            var falseParam = {
+                'task_id': taskId,
+                'task': element.innerHTML,
+                'completed': true
+            };
+            return this.user.completeTask(falseParam).subscribe();
         }
-        else if (x.style.textDecoration === 'none') {
+        else if (element.style.textDecoration === 'none') {
             document.getElementById(`${this.index}`).style.textDecoration = 'line-through';
-            //http request to change from false to true
+            var trueParam = {
+                'task_id': taskId,
+                'task': element.innerHTML,
+                'completed': false
+            };
+            return this.user.completeTask(trueParam).subscribe();
         }
     }
 };
+TaskComponent.ctorParameters = () => [
+    { type: _users_service__WEBPACK_IMPORTED_MODULE_2__["UsersService"] }
+];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], TaskComponent.prototype, "task", void 0);
@@ -354,6 +374,9 @@ let UsersService = class UsersService {
     getTasks(params) {
         const options = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('userId', params);
         return this.http.get('/api/get', { params: options });
+    }
+    completeTask(params) {
+        return this.http.post('/api/completeTask', params);
     }
 };
 UsersService.ctorParameters = () => [
