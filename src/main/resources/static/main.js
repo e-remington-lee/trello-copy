@@ -41,7 +41,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='card'>\n    <div id='taskItem' class='card-body'>     \n        <div class='form-check form-check-inline'>\n            <h5 contenteditable=\"true\" id={{index}} [ngStyle]=\"{'text-decoration':checkTask(task.completed)}\" \n            (keydown.enter)=\"abc(task.task)\">{{task.task}}</h5>\n            <mat-icon class='icons' (click)='lineThroughChange(task.task_id)'>check_circle</mat-icon>\n            <mat-icon class='icons' (click)='deleteTask(task.task_id)'>delete</mat-icon>\n        </div>   \n    </div>\n</div>\n"
+module.exports = "<div class='card'>\n    <div id='taskItem' class='card-body'>    \n\n        <div class='form-check form-check-inline'>\n            <textarea type=\"text\" id='taskInput' value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"abc(task.task)\">\n\n            </textarea>\n            <!-- <mat-form-field>\n                        <input matInput type=\"text\" id='taskInput' value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"abc(task.task)\">\n                        <button mat-icon-button matSuffix>\n                                <mat-icon class='icons' (click)='deleteTask(task.task_id)'>delete</mat-icon>\n                        </button>\n            </mat-form-field>  -->\n            <!-- <h5 contenteditable=\"true\" id={{index}} [ngStyle]=\"{'text-decoration':checkTask(task.completed)}\" \n            (keydown.enter)=\"abc(task.task)\">{{task.task}}</h5> -->\n            <!-- <mat-icon class='icons' (click)='lineThroughChange(task.task_id)'>check_circle</mat-icon> -->\n            <mat-icon class='icons' (click)='deleteTask(task.task_id)'>delete</mat-icon>\n        </div>   \n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -177,7 +177,9 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatButtonModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatCheckboxModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatIconModule"]
+            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatIconModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatFormFieldModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatInputModule"]
         ],
         providers: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
@@ -221,8 +223,9 @@ let TaskComponent = class TaskComponent {
     }
     ngOnInit() {
     }
-    abc(bob) {
-        console.log(bob);
+    abc(ab) {
+        var input = document.getElementById("taskInput").value;
+        console.log(input, ab);
     }
     deleteTask(taskId) {
         console.log("delete task");

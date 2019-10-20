@@ -11,6 +11,7 @@ export class TaskComponent implements OnInit {
 
   @Input() task: any;
   @Input() index: number;
+  taskText: String;
   isCompleted: boolean;
   constructor(private user: UsersService) { }
 
@@ -18,8 +19,9 @@ export class TaskComponent implements OnInit {
 
   }
 
-  abc(bob) {
-    console.log(bob)
+  abc(ab) {
+    var input = (<HTMLInputElement>document.getElementById("taskInput")).value;
+    console.log(input, ab);
   }
 
   deleteTask(taskId){
