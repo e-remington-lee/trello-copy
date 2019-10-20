@@ -1,20 +1,22 @@
 <div class='card'>
     <div id='taskItem' class='card-body'>    
-
         <div class='form-check form-check-inline'>
             <textarea type="text" id='taskInput' value={{task.task}} placeholder="Add a task..." (keydown.enter)="abc(task.task)">
-
+            
             </textarea>
-            <!-- <mat-form-field>
-                        <input matInput type="text" id='taskInput' value={{task.task}} placeholder="Add a task..." (keydown.enter)="abc(task.task)">
-                        <button mat-icon-button matSuffix>
-                                <mat-icon class='icons' (click)='deleteTask(task.task_id)'>delete</mat-icon>
-                        </button>
-            </mat-form-field>  -->
-            <!-- <h5 contenteditable="true" id={{index}} [ngStyle]="{'text-decoration':checkTask(task.completed)}" 
-            (keydown.enter)="abc(task.task)">{{task.task}}</h5> -->
-            <!-- <mat-icon class='icons' (click)='lineThroughChange(task.task_id)'>check_circle</mat-icon> -->
-            <mat-icon class='icons' (click)='deleteTask(task.task_id)'>delete</mat-icon>
+                        <!-- <mat-form-field>
+                                    <input matInput type="text" id='taskInput' value={{task.task}} placeholder="Add a task..." (keydown.enter)="abc(task.task)">
+                                    <button mat-icon-button matSuffix>
+                                            <mat-icon class='icons' (click)='deleteTask(task.task_id)'>delete</mat-icon>
+                                    </button>
+                        </mat-form-field>  -->
+                        <!-- <h5 contenteditable="true" id={{index}} [ngStyle]="{'text-decoration':checkTask(task.completed)}" 
+                        (keydown.enter)="abc(task.task)">{{task.task}}</h5> -->
+                        <!-- <mat-icon class='icons' (click)='lineThroughChange(task.task_id)'>check_circle</mat-icon> -->
+            <mat-icon class='icons' (click)='deleteTask(task.task_id)' >delete</mat-icon>
         </div>   
     </div>
-</div>
+ </div>
+
+
+

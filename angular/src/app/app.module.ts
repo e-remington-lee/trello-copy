@@ -7,7 +7,7 @@ import { TodoComponent } from './todo/todo.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskComponent } from './task/task.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatIconModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatIconModule } from '@angular/material';
 
 
 @NgModule({
@@ -24,9 +24,7 @@ import { MatButtonModule, MatCheckboxModule, MatIconModule, MatFormFieldModule, 
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

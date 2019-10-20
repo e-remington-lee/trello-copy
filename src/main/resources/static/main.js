@@ -41,7 +41,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='card'>\n    <div id='taskItem' class='card-body'>    \n\n        <div class='form-check form-check-inline'>\n            <textarea type=\"text\" id='taskInput' value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"abc(task.task)\">\n\n            </textarea>\n            <!-- <mat-form-field>\n                        <input matInput type=\"text\" id='taskInput' value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"abc(task.task)\">\n                        <button mat-icon-button matSuffix>\n                                <mat-icon class='icons' (click)='deleteTask(task.task_id)'>delete</mat-icon>\n                        </button>\n            </mat-form-field>  -->\n            <!-- <h5 contenteditable=\"true\" id={{index}} [ngStyle]=\"{'text-decoration':checkTask(task.completed)}\" \n            (keydown.enter)=\"abc(task.task)\">{{task.task}}</h5> -->\n            <!-- <mat-icon class='icons' (click)='lineThroughChange(task.task_id)'>check_circle</mat-icon> -->\n            <mat-icon class='icons' (click)='deleteTask(task.task_id)'>delete</mat-icon>\n        </div>   \n    </div>\n</div>\n"
+module.exports = "<div class='card'>\n    <div id='taskItem' class='card-body'>    \n        <div class='form-check form-check-inline'>\n            <textarea type=\"text\" id='taskInput' value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"abc(task.task)\">\n            \n            </textarea>\n                        <!-- <mat-form-field>\n                                    <input matInput type=\"text\" id='taskInput' value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"abc(task.task)\">\n                                    <button mat-icon-button matSuffix>\n                                            <mat-icon class='icons' (click)='deleteTask(task.task_id)'>delete</mat-icon>\n                                    </button>\n                        </mat-form-field>  -->\n                        <!-- <h5 contenteditable=\"true\" id={{index}} [ngStyle]=\"{'text-decoration':checkTask(task.completed)}\" \n                        (keydown.enter)=\"abc(task.task)\">{{task.task}}</h5> -->\n                        <!-- <mat-icon class='icons' (click)='lineThroughChange(task.task_id)'>check_circle</mat-icon> -->\n            <mat-icon class='icons' (click)='deleteTask(task.task_id)' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n\n\n\n"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<div class='card'>\n    <div id='taskItem' class='card-body'> 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Todo App!</h1>\n<form>\n    <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n</form>\n<button id='addTask' (click)='addTask()'>Add Task</button>\n<div *ngIf='show'>\n    <button id='testButton'>Hello!!</button>\n    </div>\n<button id='getUser' (click)='getTasks()'>Test Get</button>\n<app-task *ngFor='let task of taskList; let i = index' [task]='task' [index]='i'></app-task>\n\n\n"
+module.exports = "<div id=\"main\" class=\"container\">\n        <div class=\"row justify-content-center\">\n                <h1>Todo App!</h1>\n                <form>\n                        <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n                    </form>\n                    <button id='addTask' (click)='addTask()'>Add Task</button>\n                    <div *ngIf='show'>\n                        <button id='testButton'>Hello!!</button>\n                        </div>\n                    <button id='getUser' (click)='getTasks()'>Test Get</button>\n        </div>\n        <div class=\"row justify-content-center\">\n            <app-task class=\"col-8\" *ngFor='let task of taskList; let i = index' [task]='task' [index]='i'></app-task>  \n        </div>      \n</div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -177,9 +177,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatButtonModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatCheckboxModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatIconModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatFormFieldModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatInputModule"]
+            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatIconModule"]
         ],
         providers: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
@@ -197,7 +195,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card {\n  justify-items: center;\n  width: 50%;\n}\n\n.icons:hover {\n  cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFzay9EOlxcTWFzdGVybWluZFxcdG9Eb0xpc3QzXFx0b0RvTGlzdFxcYW5ndWxhci9zcmNcXGFwcFxcdGFza1xcdGFzay5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdGFzay90YXNrLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0kscUJBQUE7RUFDQSxVQUFBO0FDQUo7O0FER0E7RUFDSSxlQUFBO0FDQUoiLCJmaWxlIjoic3JjL2FwcC90YXNrL3Rhc2suY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuLmNhcmQge1xyXG4gICAganVzdGlmeS1pdGVtczogY2VudGVyO1xyXG4gICAgd2lkdGg6IDUwJTtcclxufVxyXG5cclxuLmljb25zOmhvdmVye1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG59IiwiLmNhcmQge1xuICBqdXN0aWZ5LWl0ZW1zOiBjZW50ZXI7XG4gIHdpZHRoOiA1MCU7XG59XG5cbi5pY29uczpob3ZlciB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn0iXX0= */"
+module.exports = ".icons:hover {\n  cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFzay9EOlxcTWFzdGVybWluZFxcdG9Eb0xpc3QzXFx0b0RvTGlzdFxcYW5ndWxhci9zcmNcXGFwcFxcdGFza1xcdGFzay5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdGFzay90YXNrLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0ksZUFBQTtBQ0FKIiwiZmlsZSI6InNyYy9hcHAvdGFzay90YXNrLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbi5pY29uczpob3ZlcntcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxufSIsIi5pY29uczpob3ZlciB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn0iXX0= */"
 
 /***/ }),
 
