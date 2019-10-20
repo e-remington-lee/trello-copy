@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CreateTask {
+public class DataCreateClass {
     public static void createTask(String task, Integer userId) {
         try {
             Connection con = DriverManager.getConnection(daoLayer.getURL(), daoLayer.getConnect());
