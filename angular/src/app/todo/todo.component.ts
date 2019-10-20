@@ -11,12 +11,16 @@ export class TodoComponent implements OnInit {
   task: String = null;
   obj: Object;
   taskList: any;
+  addTaskList: any[]=[];
   show: boolean;  
   userId: number = 1;
 
   constructor(private user: UsersService) { }
 
   ngOnInit() {
+      this.user.getTasks(this.userId).subscribe(data => {
+      this.taskList = data;
+    });
   }
 
   addTask() {
@@ -34,13 +38,24 @@ export class TodoComponent implements OnInit {
 
   }
 
-  getTasks() {
-    this.user.getTasks(this.userId).subscribe(data => {
-      this.taskList = data;
-    });
-  }
-
   newTask() {
+    var arrayLength = this.addTaskList.length;
+    var newTask = 
+      {
+        completed: false,
+        task: null,
+        tempId: arrayLength
+      }
+
+    if (this.addTaskList.length === 0) {
+      console.log(newTask);
+    this.addTaskList.push(newTask);
+    } else if ((<HTMLInputElement>document.getElementById(`${arrayLength-1}`)).value !== ""){
+      this.addTaskList.push(newTask);
+    } else {
+      return false;
+    }
+
   //   if (this.taskList.slice(-1)[0].task === "" || this.taskList.slice(-1)[0].task === null) {
   //     console.log(this.taskList)
   //     return false;
@@ -51,6 +66,6 @@ export class TodoComponent implements OnInit {
   //     }
   //   this.taskList.push(newTask);
   //   }
-  
+
   }
 }

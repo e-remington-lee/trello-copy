@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n    <div class='card-body'>    \n        <div class='content row'>\n            <textarea class=\"col-11 form-control\" type=\"text\" \n            value=\"\" placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"abc()\">\n            </textarea>\n            <mat-icon class='icons col-1' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n"
+module.exports = "<div class=\"card\">\n    <div class='card-body'>    \n        <div class='content row'>\n            <textarea id={{task.tempId}} class=\"col-11 form-control\" type=\"text\" value={{task.task}}\n             placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"value(task.tempId)\">\n            </textarea>\n            <mat-icon class='icons col-1' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n    <div id='taskItem' class='card-body'>    \n        <div class='content row'>\n            <textarea class=\"col-11 form-control\" type=\"text\" id={{task.task_id}}\n            value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"abc(task)\">\n            </textarea>\n            <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n\n\n\n"
+module.exports = "<div class=\"card\">\n    <div id='taskItem' class='card-body'>    \n        <div class='content row'>\n            <textarea class=\"col-11 form-control\" type=\"text\" id={{task.task_id}}\n            value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"enterTask(task)\">\n            </textarea>\n            <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n\n\n\n"
 
 /***/ }),
 
@@ -63,7 +63,7 @@ module.exports = "<div class=\"card\">\n    <div id='taskItem' class='card-body'
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"main\" class=\"container\">\n        <div class=\"row justify-content-center\">\n                <h1>Todo App!</h1>\n                <form>\n                    <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n                    </form>\n                    <button id='addTask' (click)='addTask()'>Add Task</button>\n                    <div *ngIf='show'>\n                    <button id='testButton'>Hello!!</button>\n                    </div>\n                    <button id='getUser' (click)='getTasks()'>Test Get</button>\n                    <button (click)='newTask()'>new task</button>\n        </div>\n        <div class=\"row justify-content-center\">\n            <app-task class=\"col-8\" *ngFor='let task of taskList; let i = index' [task]='task' [index]='i'></app-task>\n            <app-add-task class=\"col-8\" *ngFor='let task of addTaskList' [task]='task'></app-add-task> \n        </div>\n\n        \n</div>\n\n\n\n\n"
+module.exports = "<div id=\"main\" class=\"container\">\n        <div class=\"row justify-content-center\">\n                <h1>Todo App!</h1>\n                <form>\n                    <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n                    </form>\n                    <button id='addTask' (click)='addTask()'>Add Task</button>\n                    <div *ngIf='show'>\n                    <button id='testButton'>Hello!!</button>\n                    </div>\n                    <button (click)='newTask()'>new task</button>\n        </div>\n        <div class=\"row justify-content-center\">\n            <app-task class=\"col-8\" *ngFor='let task of taskList; let i = index' [task]='task' [index]='i'></app-task>\n            <app-add-task class=\"col-8\" *ngFor='let task of addTaskList' [task]='task'></app-add-task> \n        </div>   \n</div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -95,6 +95,9 @@ __webpack_require__.r(__webpack_exports__);
 let AddTaskComponent = class AddTaskComponent {
     constructor() { }
     ngOnInit() {
+    }
+    value(tempId) {
+        console.log(document.getElementById(tempId).value);
     }
 };
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -280,10 +283,11 @@ let TaskComponent = class TaskComponent {
     }
     ngOnInit() {
     }
-    abc(taskItem) {
+    enterTask(taskItem) {
         var input = document.getElementById(taskItem.task_id).value;
         var previousTask = taskItem.task;
         if (input !== previousTask) {
+            console.log(input, previousTask);
             console.log("post to database");
         }
         else {
@@ -350,9 +354,13 @@ let TodoComponent = class TodoComponent {
     constructor(user) {
         this.user = user;
         this.task = null;
+        this.addTaskList = [];
         this.userId = 1;
     }
     ngOnInit() {
+        this.user.getTasks(this.userId).subscribe(data => {
+            this.taskList = data;
+        });
     }
     addTask() {
         if (this.task === "" || this.task === null) {
@@ -368,12 +376,23 @@ let TodoComponent = class TodoComponent {
             });
         }
     }
-    getTasks() {
-        this.user.getTasks(this.userId).subscribe(data => {
-            this.taskList = data;
-        });
-    }
     newTask() {
+        var arrayLength = this.addTaskList.length;
+        var newTask = {
+            completed: false,
+            task: null,
+            tempId: arrayLength
+        };
+        if (this.addTaskList.length === 0) {
+            console.log(newTask);
+            this.addTaskList.push(newTask);
+        }
+        else if (document.getElementById(`${arrayLength - 1}`).value !== "") {
+            this.addTaskList.push(newTask);
+        }
+        else {
+            return false;
+        }
         //   if (this.taskList.slice(-1)[0].task === "" || this.taskList.slice(-1)[0].task === null) {
         //     console.log(this.taskList)
         //     return false;

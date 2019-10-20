@@ -19,10 +19,11 @@ export class TaskComponent implements OnInit {
 
   }
 
-  abc(taskItem) {
+  enterTask(taskItem) {
     var input = (<HTMLInputElement>document.getElementById(taskItem.task_id)).value;
     var previousTask = taskItem.task;
     if (input !== previousTask) {
+      console.log(input, previousTask);
       console.log("post to database");
     } else {
       console.log("Nothing");

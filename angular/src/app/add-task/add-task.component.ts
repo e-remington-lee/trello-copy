@@ -14,4 +14,7 @@ export class AddTaskComponent implements OnInit {
   ngOnInit() {
   }
 
+  value(tempId){
+    console.log((<HTMLInputElement>document.getElementById(tempId)).value)
+ }
 }
