@@ -10,7 +10,7 @@ export class TodoComponent implements OnInit {
 
   task: String = null;
   obj: Object;
-  taskList: Object;
+  taskList: any;
   show: boolean;  
   userId: number = 1;
 
@@ -37,5 +37,14 @@ export class TodoComponent implements OnInit {
       this.taskList = data;
       console.log(data);
     });
+  }
+
+  abc() {
+    var newTask = {
+        completed: false,
+        task: "New Task CARD",
+    }
+    this.taskList.push(newTask)
+    console.log("abc")
   }
 }

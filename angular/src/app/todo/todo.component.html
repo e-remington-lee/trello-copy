@@ -2,17 +2,22 @@
         <div class="row justify-content-center">
                 <h1>Todo App!</h1>
                 <form>
-                        <input id='inputTask' name='taskInput' [(ngModel)]='task'>
+                    <input id='inputTask' name='taskInput' [(ngModel)]='task'>
                     </form>
                     <button id='addTask' (click)='addTask()'>Add Task</button>
                     <div *ngIf='show'>
-                        <button id='testButton'>Hello!!</button>
-                        </div>
+                    <button id='testButton'>Hello!!</button>
+                    </div>
                     <button id='getUser' (click)='getTasks()'>Test Get</button>
+                    <button (click)='abc()'>push task</button>
         </div>
         <div class="row justify-content-center">
-            <app-task class="col-8" *ngFor='let task of taskList; let i = index' [task]='task' [index]='i'></app-task>  
-        </div>      
+            <app-task class="col-8" *ngFor='let task of taskList; let i = index' [task]='task' [index]='i'></app-task>
+            <app-task class="col-8" *ngFor='let task of taskList' [task]='task'></app-task>  
+  
+        </div>
+
+        
 </div>
 
 
