@@ -42,7 +42,7 @@ export class TodoComponent implements OnInit {
   abc() {
     var newTask = {
         completed: false,
-        task: "New Task CARD",
+        task: null,
     }
     this.taskList.push(newTask)
     console.log("abc")

@@ -41,7 +41,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n    <div id='taskItem' class='card-body'>    \n        <div class='content row'>\n            <textarea class=\"col-11 form-control\" type=\"text\" id='taskInput' \n            value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"abc(task.task)\">\n            </textarea>\n            <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n\n\n\n"
+module.exports = "<div class=\"card\">\n    <div id='taskItem' class='card-body'>    \n        <div class='content row'>\n            <textarea class=\"col-11 form-control\" type=\"text\" id={{task.task_id}}\n            value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"abc(task)\">\n            </textarea>\n            <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n\n\n\n"
 
 /***/ }),
 
@@ -221,42 +221,18 @@ let TaskComponent = class TaskComponent {
     }
     ngOnInit() {
     }
-    abc(ab) {
-        var input = document.getElementById("taskInput").value;
-        console.log(input, ab);
+    abc(taskItem) {
+        var input = document.getElementById(taskItem.task_id).value;
+        var previousTask = taskItem.task;
+        if (input !== previousTask) {
+            console.log("post to database");
+        }
+        else {
+            console.log("Nothing");
+        }
     }
     deleteTask(taskId) {
         console.log("delete task");
-    }
-    checkTask(checked) {
-        this.isCompleted = checked;
-        switch (checked) {
-            case true:
-                return 'line-through';
-            case false:
-                return 'none';
-        }
-    }
-    lineThroughChange(taskId) {
-        var element = document.getElementById(`${this.index}`);
-        if (element.style.textDecoration === 'line-through') {
-            document.getElementById(`${this.index}`).style.textDecoration = 'none';
-            var falseParam = {
-                'task_id': taskId,
-                'task': element.innerHTML,
-                'completed': true
-            };
-            return this.user.completeTask(falseParam).subscribe();
-        }
-        else if (element.style.textDecoration === 'none') {
-            document.getElementById(`${this.index}`).style.textDecoration = 'line-through';
-            var trueParam = {
-                'task_id': taskId,
-                'task': element.innerHTML,
-                'completed': false
-            };
-            return this.user.completeTask(trueParam).subscribe();
-        }
     }
 };
 TaskComponent.ctorParameters = () => [
@@ -336,7 +312,7 @@ let TodoComponent = class TodoComponent {
     abc() {
         var newTask = {
             completed: false,
-            task: "New Task CARD",
+            task: null,
         };
         this.taskList.push(newTask);
         console.log("abc");
