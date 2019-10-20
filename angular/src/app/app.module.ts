@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { TaskComponent } from './task/task.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatIconModule } from '@angular/material';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoComponent,
-    TaskComponent
+    TaskComponent,
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,

@@ -1,21 +1,21 @@
 package com.springBoot.toDoList.controller;
 
-import org.springframework.http.HttpStatus;
+import com.springBoot.toDoList.data.DataDeleteTask;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
 @RestController
-public class CompleteTask {
-    @PostMapping("/api/completeTask")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void changeTask(@RequestBody Map<String, Object> obj){
+public class DeleteTask {
+    @PostMapping("/api/deleteTask")
+    public void deleteTask(@RequestBody Map<String, Integer> map) {
         try {
-            System.out.println(obj);
-        } catch(Error err) {
+            System.out.println(map);
+            Integer id = map.get("taskId");
+            DataDeleteTask.deleteTask(id);
+        } catch(Error err){
             throw new Error(err.getMessage());
         }
     }

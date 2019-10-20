@@ -7,14 +7,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class DataCreateClass {
-    public static void createTask(String task, Integer userId) {
+public class DataDeleteTask {
+    public static void deleteTask(Integer id) {
         try {
             Connection con = DriverManager.getConnection(daoLayer.getURL(), daoLayer.getConnect());
-            PreparedStatement st = con.prepareStatement("INSERT into tasks (user_id, task_name) VALUES (?, ?)");
-            st.setInt(1,userId);
-            st.setString(2,task);
-            int rs = st.executeUpdate();
+            PreparedStatement st = con.prepareStatement(" DELETE from tasks where task_id = (?)");
+            st.setInt(1,id);
+            st.executeUpdate();
             con.close();
         } catch (SQLException err) {
             throw new Error(err.getMessage());

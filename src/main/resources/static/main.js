@@ -23,6 +23,17 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/add-task/add-task.component.html":
+/*!****************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/add-task/add-task.component.html ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card\">\n    <div class='card-body'>    \n        <div class='content row'>\n            <textarea class=\"col-11 form-control\" type=\"text\" \n            value=\"\" placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"abc()\">\n            </textarea>\n            <mat-icon class='icons col-1' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n"
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/index.js!./src/app/app.component.html":
 /*!**************************************************************!*\
   !*** ./node_modules/raw-loader!./src/app/app.component.html ***!
@@ -52,7 +63,52 @@ module.exports = "<div class=\"card\">\n    <div id='taskItem' class='card-body'
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"main\" class=\"container\">\n        <div class=\"row justify-content-center\">\n                <h1>Todo App!</h1>\n                <form>\n                    <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n                    </form>\n                    <button id='addTask' (click)='addTask()'>Add Task</button>\n                    <div *ngIf='show'>\n                    <button id='testButton'>Hello!!</button>\n                    </div>\n                    <button id='getUser' (click)='getTasks()'>Test Get</button>\n                    <button (click)='abc()'>push task</button>\n        </div>\n        <div class=\"row justify-content-center\">\n            <app-task class=\"col-8\" *ngFor='let task of taskList; let i = index' [task]='task' [index]='i'></app-task>\n            <app-task class=\"col-8\" *ngFor='let task of taskList' [task]='task'></app-task>  \n  \n        </div>\n\n        \n</div>\n\n\n\n\n"
+module.exports = "<div id=\"main\" class=\"container\">\n        <div class=\"row justify-content-center\">\n                <h1>Todo App!</h1>\n                <form>\n                    <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n                    </form>\n                    <button id='addTask' (click)='addTask()'>Add Task</button>\n                    <div *ngIf='show'>\n                    <button id='testButton'>Hello!!</button>\n                    </div>\n                    <button id='getUser' (click)='getTasks()'>Test Get</button>\n                    <button (click)='newTask()'>new task</button>\n        </div>\n        <div class=\"row justify-content-center\">\n            <app-task class=\"col-8\" *ngFor='let task of taskList; let i = index' [task]='task' [index]='i'></app-task>\n            <app-add-task class=\"col-8\" *ngFor='let task of addTaskList' [task]='task'></app-add-task> \n        </div>\n\n        \n</div>\n\n\n\n\n"
+
+/***/ }),
+
+/***/ "./src/app/add-task/add-task.component.scss":
+/*!**************************************************!*\
+  !*** ./src/app/add-task/add-task.component.scss ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".icons:hover {\n  cursor: pointer;\n}\n\n.card {\n  background: #cbd1d1;\n}\n\ntextarea {\n  width: 100%;\n  resize: none;\n  overflow: auto;\n  outline: none;\n  border: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWRkLXRhc2svRDpcXE1hc3Rlcm1pbmRcXHRvRG9MaXN0M1xcdG9Eb0xpc3RcXGFuZ3VsYXIvc3JjXFxhcHBcXGFkZC10YXNrXFxhZGQtdGFzay5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYWRkLXRhc2svYWRkLXRhc2suY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDSSxlQUFBO0FDQUo7O0FER0E7RUFDSSxtQkFBQTtBQ0FKOztBREdBO0VBQ0ksV0FBQTtFQUNBLFlBQUE7RUFDQSxjQUFBO0VBQ0EsYUFBQTtFQUNBLFlBQUE7QUNBSiIsImZpbGUiOiJzcmMvYXBwL2FkZC10YXNrL2FkZC10YXNrLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbi5pY29uczpob3ZlcntcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLmNhcmQge1xyXG4gICAgYmFja2dyb3VuZDogcmdiKDIwMywgMjA5LCAyMDkpO1xyXG59XHJcblxyXG50ZXh0YXJlYSB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIHJlc2l6ZTogbm9uZTtcclxuICAgIG92ZXJmbG93OiBhdXRvO1xyXG4gICAgb3V0bGluZTogbm9uZTtcclxuICAgIGJvcmRlcjogbm9uZTtcclxufSIsIi5pY29uczpob3ZlciB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLmNhcmQge1xuICBiYWNrZ3JvdW5kOiAjY2JkMWQxO1xufVxuXG50ZXh0YXJlYSB7XG4gIHdpZHRoOiAxMDAlO1xuICByZXNpemU6IG5vbmU7XG4gIG92ZXJmbG93OiBhdXRvO1xuICBvdXRsaW5lOiBub25lO1xuICBib3JkZXI6IG5vbmU7XG59Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/add-task/add-task.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/add-task/add-task.component.ts ***!
+  \************************************************/
+/*! exports provided: AddTaskComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddTaskComponent", function() { return AddTaskComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let AddTaskComponent = class AddTaskComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], AddTaskComponent.prototype, "task", void 0);
+AddTaskComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-add-task',
+        template: __webpack_require__(/*! raw-loader!./add-task.component.html */ "./node_modules/raw-loader/index.js!./src/app/add-task/add-task.component.html"),
+        styles: [__webpack_require__(/*! ./add-task.component.scss */ "./src/app/add-task/add-task.component.scss")]
+    })
+], AddTaskComponent);
+
+
 
 /***/ }),
 
@@ -149,6 +205,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _task_task_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./task/task.component */ "./src/app/task/task.component.ts");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm2015/animations.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
+/* harmony import */ var _add_task_add_task_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./add-task/add-task.component */ "./src/app/add-task/add-task.component.ts");
+
 
 
 
@@ -167,7 +225,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         declarations: [
             _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
             _todo_todo_component__WEBPACK_IMPORTED_MODULE_6__["TodoComponent"],
-            _task_task_component__WEBPACK_IMPORTED_MODULE_8__["TaskComponent"]
+            _task_task_component__WEBPACK_IMPORTED_MODULE_8__["TaskComponent"],
+            _add_task_add_task_component__WEBPACK_IMPORTED_MODULE_11__["AddTaskComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -195,7 +254,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".icons:hover {\n  cursor: pointer;\n}\n\n.card {\n  background: #cbd1d1;\n}\n\ntextarea {\n  width: 100%;\n  resize: none;\n  overflow: auto;\n  outline: none;\n  border: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFzay9EOlxcTWFzdGVybWluZFxcdG9Eb0xpc3QzXFx0b0RvTGlzdFxcYW5ndWxhci9zcmNcXGFwcFxcdGFza1xcdGFzay5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdGFzay90YXNrLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0ksZUFBQTtBQ0FKOztBREdBO0VBQ0ksbUJBQUE7QUNBSjs7QURVQTtFQUNJLFdBQUE7RUFDQSxZQUFBO0VBQ0EsY0FBQTtFQUNBLGFBQUE7RUFDQSxZQUFBO0FDUEoiLCJmaWxlIjoic3JjL2FwcC90YXNrL3Rhc2suY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuLmljb25zOmhvdmVye1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcblxyXG4uY2FyZCB7XHJcbiAgICBiYWNrZ3JvdW5kOiByZ2IoMjAzLCAyMDksIDIwOSk7XHJcbn1cclxuLy8gdGV4dGFyZWEge1xyXG4vLyAgICAgd2lkdGg6IDEwMCU7XHJcbi8vICAgICBoZWlnaHQ6IDIuMjVyZW07XHJcbi8vICAgICBtaW4taGVpZ2h0OiAyLjI1cmVtO1xyXG4vLyAgICAgcmVzaXplOiBub25lO1xyXG4vLyAgICAgb3ZlcmZsb3cteTpoaWRkZW47XHJcbi8vIH1cclxuICBcclxudGV4dGFyZWEge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICByZXNpemU6IG5vbmU7XHJcbiAgICBvdmVyZmxvdzogYXV0bztcclxuICAgIG91dGxpbmU6IG5vbmU7XHJcbiAgICBib3JkZXI6IG5vbmU7XHJcbn0iLCIuaWNvbnM6aG92ZXIge1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5jYXJkIHtcbiAgYmFja2dyb3VuZDogI2NiZDFkMTtcbn1cblxudGV4dGFyZWEge1xuICB3aWR0aDogMTAwJTtcbiAgcmVzaXplOiBub25lO1xuICBvdmVyZmxvdzogYXV0bztcbiAgb3V0bGluZTogbm9uZTtcbiAgYm9yZGVyOiBub25lO1xufSJdfQ== */"
+module.exports = ".icons:hover {\n  cursor: pointer;\n}\n\n.card {\n  background: #cbd1d1;\n}\n\ntextarea {\n  width: 100%;\n  resize: none;\n  overflow: auto;\n  outline: none;\n  border: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFzay9EOlxcTWFzdGVybWluZFxcdG9Eb0xpc3QzXFx0b0RvTGlzdFxcYW5ndWxhci9zcmNcXGFwcFxcdGFza1xcdGFzay5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdGFzay90YXNrLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0ksZUFBQTtBQ0FKOztBREdBO0VBQ0ksbUJBQUE7QUNBSjs7QURHQTtFQUNJLFdBQUE7RUFDQSxZQUFBO0VBQ0EsY0FBQTtFQUNBLGFBQUE7RUFDQSxZQUFBO0FDQUoiLCJmaWxlIjoic3JjL2FwcC90YXNrL3Rhc2suY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuLmljb25zOmhvdmVye1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcblxyXG4uY2FyZCB7XHJcbiAgICBiYWNrZ3JvdW5kOiByZ2IoMjAzLCAyMDksIDIwOSk7XHJcbn1cclxuXHJcbnRleHRhcmVhIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgcmVzaXplOiBub25lO1xyXG4gICAgb3ZlcmZsb3c6IGF1dG87XHJcbiAgICBvdXRsaW5lOiBub25lO1xyXG4gICAgYm9yZGVyOiBub25lO1xyXG59IiwiLmljb25zOmhvdmVyIHtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uY2FyZCB7XG4gIGJhY2tncm91bmQ6ICNjYmQxZDE7XG59XG5cbnRleHRhcmVhIHtcbiAgd2lkdGg6IDEwMCU7XG4gIHJlc2l6ZTogbm9uZTtcbiAgb3ZlcmZsb3c6IGF1dG87XG4gIG91dGxpbmU6IG5vbmU7XG4gIGJvcmRlcjogbm9uZTtcbn0iXX0= */"
 
 /***/ }),
 
@@ -231,8 +290,12 @@ let TaskComponent = class TaskComponent {
             console.log("Nothing");
         }
     }
-    deleteTask(taskId) {
-        console.log("delete task");
+    deleteTask(id) {
+        var params = {
+            taskId: id
+        };
+        console.log(params);
+        this.user.deleteTask(params).subscribe();
     }
 };
 TaskComponent.ctorParameters = () => [
@@ -295,27 +358,32 @@ let TodoComponent = class TodoComponent {
         if (this.task === "" || this.task === null) {
             return false;
         }
-        this.obj = {
-            task: this.task,
-            userId: 1
-        };
-        this.user.postUser(this.obj).subscribe(() => {
-            this.show = true;
-        });
+        else {
+            this.obj = {
+                task: this.task,
+                userId: 1
+            };
+            this.user.postUser(this.obj).subscribe(() => {
+                this.show = true;
+            });
+        }
     }
     getTasks() {
         this.user.getTasks(this.userId).subscribe(data => {
             this.taskList = data;
-            console.log(data);
         });
     }
-    abc() {
-        var newTask = {
-            completed: false,
-            task: null,
-        };
-        this.taskList.push(newTask);
-        console.log("abc");
+    newTask() {
+        //   if (this.taskList.slice(-1)[0].task === "" || this.taskList.slice(-1)[0].task === null) {
+        //     console.log(this.taskList)
+        //     return false;
+        //   } else {
+        //   var newTask = {
+        //       completed: false,
+        //       task: null,
+        //     }
+        //   this.taskList.push(newTask);
+        //   }
     }
 };
 TodoComponent.ctorParameters = () => [
@@ -360,8 +428,8 @@ let UsersService = class UsersService {
         const options = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('userId', params);
         return this.http.get('/api/get', { params: options });
     }
-    completeTask(params) {
-        return this.http.post('/api/completeTask', params);
+    deleteTask(params) {
+        return this.http.post('/api/deleteTask', params);
     }
 };
 UsersService.ctorParameters = () => [

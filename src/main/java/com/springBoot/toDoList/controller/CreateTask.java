@@ -18,7 +18,6 @@ public class CreateTask {
         try {
             String task = obj.get("task").toString();
             Integer userId = (int) obj.get("userId");
-            System.out.println(task);
             DataCreateClass.createTask(task, userId);
 
         } catch(NullPointerException err) {

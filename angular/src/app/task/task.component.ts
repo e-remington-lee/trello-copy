@@ -29,8 +29,12 @@ export class TaskComponent implements OnInit {
     }
   }
 
-  deleteTask(taskId){
-    console.log("delete task");
+  deleteTask(id){
+    var params = {
+      taskId: id
+    }
+    console.log(params);
+    this.user.deleteTask(params).subscribe();
   }
 
   // checkTask(checked) {
