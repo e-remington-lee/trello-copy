@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n    <div class='card-body'>    \n        <div class='content row'>\n            <textarea id={{task.tempId}} class=\"col-11 form-control\" type=\"text\" value={{task.task}}\n             placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"value(task.tempId)\">\n            </textarea>\n            <mat-icon class='icons col-1' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n"
+module.exports = "<div class=\"card\">\n    <div class='card-body'>    \n        <div class='content row'>\n            <textarea id={{task.tempId}} class=\"col-11 form-control\" type=\"text\" value={{task.task}}\n             placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"addTask(task.tempId)\">\n            </textarea>\n            <mat-icon class='icons col-1' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n"
 
 /***/ }),
 
@@ -90,16 +90,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddTaskComponent", function() { return AddTaskComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _users_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../users.service */ "./src/app/users.service.ts");
+
 
 
 let AddTaskComponent = class AddTaskComponent {
-    constructor() { }
+    constructor(user) {
+        this.user = user;
+    }
     ngOnInit() {
     }
-    value(tempId) {
-        console.log(document.getElementById(tempId).value);
+    addTask(tempId) {
+        if (document.getElementById(tempId).value) {
+            return false;
+        }
+        else {
+            this.obj = {
+                task: this.task,
+                userId: 1
+            };
+            this.user.createTask(this.obj).subscribe();
+        }
     }
 };
+AddTaskComponent.ctorParameters = () => [
+    { type: _users_service__WEBPACK_IMPORTED_MODULE_2__["UsersService"] }
+];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], AddTaskComponent.prototype, "task", void 0);
@@ -371,7 +387,7 @@ let TodoComponent = class TodoComponent {
                 task: this.task,
                 userId: 1
             };
-            this.user.postUser(this.obj).subscribe(() => {
+            this.user.createTask(this.obj).subscribe(() => {
                 this.show = true;
             });
         }
@@ -440,7 +456,7 @@ let UsersService = class UsersService {
     constructor(http) {
         this.http = http;
     }
-    postUser(user) {
+    createTask(user) {
         return this.http.post('/api/createTask', user);
     }
     getTasks(params) {

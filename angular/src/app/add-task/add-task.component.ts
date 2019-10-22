@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-add-task',
@@ -8,13 +9,24 @@ import { Component, OnInit, Input } from '@angular/core';
 export class AddTaskComponent implements OnInit {
 
   @Input() task;
+  obj: Object;
 
-  constructor() { }
+  constructor(private user: UsersService) { }
 
   ngOnInit() {
   }
 
-  value(tempId){
-    console.log((<HTMLInputElement>document.getElementById(tempId)).value)
- }
+    addTask(tempId) {
+    if ((<HTMLInputElement>document.getElementById(tempId)).value) {
+      return false;
+    } else {
+    this.obj = {
+      task: this.task,
+      userId: 1
+    }
+    this.user.createTask(this.obj).subscribe();
+    }
+  }
+
+
 }

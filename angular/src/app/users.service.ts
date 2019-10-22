@@ -8,7 +8,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  postUser(user) {
+  createTask(user) {
     return this.http.post('/api/createTask', user);
   }
 

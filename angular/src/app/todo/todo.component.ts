@@ -31,7 +31,7 @@ export class TodoComponent implements OnInit {
       task: this.task,
       userId: 1
     }
-    this.user.postUser(this.obj).subscribe(() => {
+    this.user.createTask(this.obj).subscribe(() => {
       this.show = true;
     });
     }
@@ -46,7 +46,6 @@ export class TodoComponent implements OnInit {
         task: null,
         tempId: arrayLength
       }
-
     if (this.addTaskList.length === 0) {
       console.log(newTask);
     this.addTaskList.push(newTask);
