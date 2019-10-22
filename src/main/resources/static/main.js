@@ -52,7 +52,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n    <div id='taskItem' class='card-body'>    \n        <div class='content row'>\n            <textarea class=\"col-11 form-control\" type=\"text\" id={{task.task_id}}\n            value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"enterTask(task)\">\n            </textarea>\n            <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n\n\n\n"
+module.exports = "<div class=\"card\">\n    <div id='taskItem' class='card-body'>    \n        <div class='content row'>\n            <textarea  class=\"col-11 form-control\" type=\"text\" id={{task.task_id}}\n            value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\"\n            (keydown.enter)=\"enterTask(task)\" (change)=\"onChangeEvent(task)\">\n            </textarea>\n            <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n\n\n\n"
 
 /***/ }),
 
@@ -97,19 +97,23 @@ __webpack_require__.r(__webpack_exports__);
 let AddTaskComponent = class AddTaskComponent {
     constructor(user) {
         this.user = user;
+        this.onChange = true;
     }
     ngOnInit() {
     }
     addTask(tempId) {
-        if (document.getElementById(tempId).value) {
+        var value = document.getElementById(tempId).value;
+        if (value.trim() === "" ||
+            value.trim() === null) {
             return false;
         }
         else {
             this.obj = {
-                task: this.task,
+                task: value.trim(),
                 userId: 1
             };
             this.user.createTask(this.obj).subscribe();
+            console.log("posted");
         }
     }
 };
@@ -296,20 +300,31 @@ __webpack_require__.r(__webpack_exports__);
 let TaskComponent = class TaskComponent {
     constructor(user) {
         this.user = user;
+        this.onChange = false;
     }
     ngOnInit() {
     }
     enterTask(taskItem) {
-        var input = document.getElementById(taskItem.task_id).value;
+        var input = document.getElementById(taskItem.task_id);
+        input.blur();
+    }
+    onChangeEvent(taskItem) {
+        var input = document.getElementById(taskItem.task_id);
+        var inputTrim = input.value.trim();
         var previousTask = taskItem.task;
-        if (input !== previousTask) {
-            console.log(input, previousTask);
+        if (inputTrim !== previousTask) {
+            console.log(inputTrim, previousTask);
             console.log("post to database");
+            return null;
         }
         else {
             console.log("Nothing");
         }
     }
+    // onChangeEvent(taskItem) {
+    //   console.log("on change")
+    //   return this.enterTask(taskItem);
+    // }
     deleteTask(id) {
         var params = {
             taskId: id

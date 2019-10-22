@@ -10,6 +10,7 @@ export class AddTaskComponent implements OnInit {
 
   @Input() task;
   obj: Object;
+  onChange: boolean = true;
 
   constructor(private user: UsersService) { }
 
@@ -17,16 +18,17 @@ export class AddTaskComponent implements OnInit {
   }
 
     addTask(tempId) {
-    if ((<HTMLInputElement>document.getElementById(tempId)).value) {
-      return false;
-    } else {
-    this.obj = {
-      task: this.task,
-      userId: 1
+      var value = (<HTMLInputElement>document.getElementById(tempId)).value;
+      if ( value.trim( )=== "" ||
+      value.trim() === null ) {
+        return false;
+      } else {
+      this.obj = {
+        task: value.trim(),
+        userId: 1
+      }
+      this.user.createTask(this.obj).subscribe();
+      console.log("posted");
+      }
     }
-    this.user.createTask(this.obj).subscribe();
-    }
-  }
-
-
 }

@@ -12,7 +12,7 @@ export class TaskComponent implements OnInit {
   @Input() task: any;
   @Input() index: number;
   taskText: String;
-  isCompleted: boolean;
+  onChange: boolean = false;
   constructor(private user: UsersService) { }
 
   ngOnInit() {
@@ -20,15 +20,27 @@ export class TaskComponent implements OnInit {
   }
 
   enterTask(taskItem) {
-    var input = (<HTMLInputElement>document.getElementById(taskItem.task_id)).value;
+    var input = document.getElementById(taskItem.task_id);
+    input.blur();
+  }
+
+  onChangeEvent(taskItem) {
+    var input = document.getElementById(taskItem.task_id);
+    var inputTrim = (<HTMLInputElement>input).value.trim();
     var previousTask = taskItem.task;
-    if (input !== previousTask) {
-      console.log(input, previousTask);
+    if (inputTrim !== previousTask) {
+      console.log(inputTrim, previousTask);
       console.log("post to database");
+      return null
     } else {
       console.log("Nothing");
     }
   }
+
+  // onChangeEvent(taskItem) {
+  //   console.log("on change")
+  //   return this.enterTask(taskItem);
+  // }
 
   deleteTask(id){
     var params = {
