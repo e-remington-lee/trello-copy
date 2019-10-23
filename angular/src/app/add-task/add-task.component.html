@@ -1,7 +1,7 @@
 <div class="card">
     <div class='card-body'>    
         <div class='content row'>
-            <textarea id={{task.tempId}} class="col-11 form-control" type="text" value={{task.task}}
+            <textarea name="tempTextArea" id={{task.tempId}} class="col-11 form-control" type="text" value={{task.task}}
              placeholder="Add a task..." (keydown.enter)="$event.preventDefault()" (keydown.enter)="addTask(task.tempId)">
             </textarea>
             <mat-icon class='icons col-1' >delete</mat-icon>

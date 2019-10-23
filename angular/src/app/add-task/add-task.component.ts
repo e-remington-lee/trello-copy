@@ -19,7 +19,7 @@ export class AddTaskComponent implements OnInit {
 
     addTask(tempId) {
       var value = (<HTMLInputElement>document.getElementById(tempId)).value;
-      if ( value.trim( )=== "" ||
+      if ( value.trim()=== "" ||
       value.trim() === null ) {
         return false;
       } else {
