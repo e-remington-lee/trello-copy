@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n    <div class='card-body'>    \n        <div class='content row'>\n            <textarea id={{task.tempId}} class=\"col-11 form-control\" type=\"text\" value={{task.task}}\n             placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"addTask(task.tempId)\">\n            </textarea>\n            <mat-icon class='icons col-1' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n"
+module.exports = "<div class=\"card\">\n    <div class='card-body'>    \n        <div class='content row'>\n            <textarea name=\"tempTextArea\" id={{task.tempId}} class=\"col-11 form-control\" type=\"text\" value={{task.task}}\n             placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"addTask(task.tempId)\">\n            </textarea>\n            <mat-icon class='icons col-1' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n    <div id='taskItem' class='card-body'>    \n        <div class='content row'>\n            <textarea  class=\"col-11 form-control\" type=\"text\" id={{task.task_id}}\n            value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\"\n            (keydown.enter)=\"enterTask(task)\" (change)=\"onChangeEvent(task)\">\n            </textarea>\n            <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n\n\n\n"
+module.exports = "<div class=\"card\">\n    <div id='taskItem' class='card-body'>    \n        <div class='content row'>\n            <textarea name=\"textArea\"class=\"col-11 form-control\" type=\"text\" id={{task.task_id}}\n            value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\"\n            (keydown.enter)=\"enterTask(task)\" (change)=\"onChangeEvent(task)\">\n            </textarea>\n            <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)'>delete</mat-icon>\n        </div>   \n    </div>\n </div>\n\n\n\n"
 
 /***/ }),
 
@@ -300,6 +300,7 @@ __webpack_require__.r(__webpack_exports__);
 let TaskComponent = class TaskComponent {
     constructor(user) {
         this.user = user;
+        this.userId = 1;
         this.onChange = false;
     }
     ngOnInit() {
@@ -312,19 +313,19 @@ let TaskComponent = class TaskComponent {
         var input = document.getElementById(taskItem.task_id);
         var inputTrim = input.value.trim();
         var previousTask = taskItem.task;
-        if (inputTrim !== previousTask) {
-            console.log(inputTrim, previousTask);
-            console.log("post to database");
-            return null;
+        if (inputTrim === "") {
+            return input.value = previousTask;
+        }
+        else if (inputTrim !== previousTask) {
+            this.user.getTasks(this.userId).subscribe(() => {
+                console.log(inputTrim, previousTask);
+                console.log("post to database");
+            });
         }
         else {
             console.log("Nothing");
         }
     }
-    // onChangeEvent(taskItem) {
-    //   console.log("on change")
-    //   return this.enterTask(taskItem);
-    // }
     deleteTask(id) {
         var params = {
             taskId: id
@@ -480,6 +481,9 @@ let UsersService = class UsersService {
     }
     deleteTask(params) {
         return this.http.post('/api/deleteTask', params);
+    }
+    updateTask(params) {
+        return this.http.post('/api/updateTask', params);
     }
 };
 UsersService.ctorParameters = () => [

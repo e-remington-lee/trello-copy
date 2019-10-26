@@ -20,4 +20,8 @@ export class UsersService {
   deleteTask(params) {
     return this.http.post('/api/deleteTask', params);
   }
+
+  updateTask(params) {
+    return this.http.post('/api/updateTask', params);
+  }
 }
