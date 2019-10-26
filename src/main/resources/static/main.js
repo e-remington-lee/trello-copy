@@ -323,8 +323,11 @@ let TaskComponent = class TaskComponent {
                 "task": inputTrim
             };
             this.user.updateTask(params).subscribe(() => {
-                console.log(inputTrim, previousTask);
-                console.log("post to database");
+                this.user.getSingleTask(params).subscribe(data => {
+                    this.task = data[0];
+                    console.log(inputTrim, previousTask);
+                    console.log(data[0]);
+                });
             });
         }
         else {
@@ -489,6 +492,18 @@ let UsersService = class UsersService {
     }
     updateTask(params) {
         return this.http.post('/api/updateTask', params);
+    }
+    getSingleTask(params) {
+        // const headersDict = {
+        //   'Content-Type': 'application/json',
+        //   'Accept': 'application/json',
+        //   'Access-Control-Allow-Headers': 'Content-Type',
+        //   'userId': params.userId,
+        //   'taskId': params.taskId
+        // }
+        // return this.http.get('/api/getSingleTask', {headers: new HttpHeaders(headersDict)})
+        const options = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('userId', params.userId).set('taskId', params.taskId);
+        return this.http.get('/api/getSingleTask', { params: options });
     }
 };
 UsersService.ctorParameters = () => [

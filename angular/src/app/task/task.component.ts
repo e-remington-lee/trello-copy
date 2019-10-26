@@ -38,8 +38,11 @@ export class TaskComponent implements OnInit {
           "task": inputTrim
       }
       this.user.updateTask(params).subscribe(() => {
-        console.log(inputTrim, previousTask);
-        console.log("post to database");
+        this.user.getSingleTask(params).subscribe(data => {
+          this.task = data[0];
+          console.log(inputTrim, previousTask);
+          console.log(data[0]);
+        });
       });
     } else {
       console.log("Nothing");
