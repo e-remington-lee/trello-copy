@@ -20,28 +20,31 @@ export class TaskComponent implements OnInit {
   }
 
   enterTask(taskItem) {
-    var input = document.getElementById(taskItem.task_id);
+    let input = document.getElementById(taskItem.task_id);
     input.blur();
   }
 
 
   onChangeEvent(taskItem) {
-    var input = document.getElementById(taskItem.task_id);
-    var inputTrim = (<HTMLInputElement>input).value.trim();
-    var previousTask = taskItem.task;
+    let input = document.getElementById(taskItem.task_id);
+    let inputTrim = (<HTMLInputElement>input).value.trim();
+    let previousTask = taskItem.task;
     if (inputTrim === "") {
       return (<HTMLInputElement>input).value = previousTask;
     } else if (inputTrim !== previousTask) {
-      this.user.getTasks(this.userId).subscribe(() => {
+      let params = {
+          "userId": this.userId,
+          "taskId": taskItem.task_id,
+          "task": inputTrim
+      }
+      this.user.updateTask(params).subscribe(() => {
         console.log(inputTrim, previousTask);
         console.log("post to database");
       });
     } else {
       console.log("Nothing");
     }
-
   }
-
 
 
   deleteTask(id){

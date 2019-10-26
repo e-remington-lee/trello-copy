@@ -306,18 +306,23 @@ let TaskComponent = class TaskComponent {
     ngOnInit() {
     }
     enterTask(taskItem) {
-        var input = document.getElementById(taskItem.task_id);
+        let input = document.getElementById(taskItem.task_id);
         input.blur();
     }
     onChangeEvent(taskItem) {
-        var input = document.getElementById(taskItem.task_id);
-        var inputTrim = input.value.trim();
-        var previousTask = taskItem.task;
+        let input = document.getElementById(taskItem.task_id);
+        let inputTrim = input.value.trim();
+        let previousTask = taskItem.task;
         if (inputTrim === "") {
             return input.value = previousTask;
         }
         else if (inputTrim !== previousTask) {
-            this.user.getTasks(this.userId).subscribe(() => {
+            let params = {
+                "userId": this.userId,
+                "taskId": taskItem.task_id,
+                "task": inputTrim
+            };
+            this.user.updateTask(params).subscribe(() => {
                 console.log(inputTrim, previousTask);
                 console.log("post to database");
             });
