@@ -102,7 +102,7 @@ let AddTaskComponent = class AddTaskComponent {
     ngOnInit() {
     }
     addTask(tempId) {
-        var value = document.getElementById(tempId).value;
+        let value = document.getElementById(tempId).value;
         if (value.trim() === "" ||
             value.trim() === null) {
             return false;
