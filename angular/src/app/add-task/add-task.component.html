@@ -1,5 +1,8 @@
-<textarea name="tempTextArea" id={{task.tempId}} class="form-control" type="text" value={{task.task}}
-placeholder="Add a task..." (keydown.enter)="$event.preventDefault()" (keydown.enter)="addTask(task.tempId)">
-</textarea>
-<mat-icon class='icons' >delete</mat-icon>
+<div class='row'>
+        <textarea name="tempTextArea" id={{task.tempId}} class="col-12 form-control" type="text" value={{task.task}}
+        placeholder="Add a task..." (keydown.enter)="$event.preventDefault()" (keydown.enter)="addTask(task.tempId)">
+        </textarea>
+        <mat-icon class='col icons' >delete_outline</mat-icon>
+</div>
+
 

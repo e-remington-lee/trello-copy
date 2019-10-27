@@ -8,7 +8,7 @@ public class addTaskTest {
     public static void addTask(WebDriver driver){
         try {
             String testFinal = "New Task Item2";
-            WebElement element = driver.findElement(By.id("newTaskButton"));
+            WebElement element = driver.findElement(By.id("newTask"));
 
             element.click();
             WebElement element2 = driver.findElement(By.id("0"));

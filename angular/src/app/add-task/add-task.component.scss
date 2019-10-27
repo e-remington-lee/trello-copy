@@ -10,3 +10,17 @@ textarea {
     outline: none;
     border: none;
 }
+
+.icons {
+    display: none;
+    margin-left:-40px;
+    position: relative;
+}
+
+.row:hover .icons {
+    display: block;
+}
+
+.row {
+    padding: 10px 0 10px 0;
+}

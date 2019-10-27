@@ -1,14 +1,17 @@
 <div id="main" class="container">
         <div class="row justify-content-center">
-                <h1>Todo App!</h1>
-                    <button id='newTaskButton' name='newTaskButton'(click)='newTask()'>new task</button>
+            <h1>Todo App!</h1>
         </div>
         <div class="row justify-content-center" id="list-1">
                 <div class="col-8 card">
-                        <div id="randomId" class='card-body'>    
+                    <div class='card-header'> Task List 1</div>
+                            <div class='card-body'>    
                                 <app-task *ngFor='let task of taskList' [task]='task'></app-task>
                                 <app-add-task *ngFor='let task of addTaskList' [task]='task'></app-add-task> 
                         </div>
+                        <div id='newTask' class='card-footer' (click)='newTask()'>
+                                + Add New Task
+                            </div>
                      </div>
                 </div>   
             </div>
