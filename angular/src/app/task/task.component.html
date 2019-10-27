@@ -1,5 +1,5 @@
 <div class="card">
-    <div id='taskItem' class='card-body'>    
+    <div id='taskItem {{task.task_id}}' class='card-body'>    
         <div class='content row'>
             <textarea name="textArea"class="col-11 form-control" type="text" id={{task.task_id}}
             value={{task.task}} placeholder="Add a task..." (keydown.enter)="$event.preventDefault()"

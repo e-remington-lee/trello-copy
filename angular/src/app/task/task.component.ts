@@ -51,9 +51,12 @@ export class TaskComponent implements OnInit {
 
 
   deleteTask(id){
-    var params = {
+    let params = {
       taskId: id
     }
+    let element = document.getElementById("list-1");
+    let child = document.getElementById(`taskItem ${id}`);
+    child.remove();
     console.log(params);
     this.user.deleteTask(params).subscribe();
   }

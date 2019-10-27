@@ -52,7 +52,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n    <div id='taskItem' class='card-body'>    \n        <div class='content row'>\n            <textarea name=\"textArea\"class=\"col-11 form-control\" type=\"text\" id={{task.task_id}}\n            value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\"\n            (keydown.enter)=\"enterTask(task)\" (change)=\"onChangeEvent(task)\">\n            </textarea>\n            <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)'>delete</mat-icon>\n        </div>   \n    </div>\n </div>\n\n\n\n"
+module.exports = "<div class=\"card\">\n    <div id='taskItem {{task.task_id}}' class='card-body'>    \n        <div class='content row'>\n            <textarea name=\"textArea\"class=\"col-11 form-control\" type=\"text\" id={{task.task_id}}\n            value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\"\n            (keydown.enter)=\"enterTask(task)\" (change)=\"onChangeEvent(task)\">\n            </textarea>\n            <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)'>delete</mat-icon>\n        </div>   \n    </div>\n </div>\n\n\n\n"
 
 /***/ }),
 
@@ -63,7 +63,7 @@ module.exports = "<div class=\"card\">\n    <div id='taskItem' class='card-body'
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"main\" class=\"container\">\n        <div class=\"row justify-content-center\">\n                <h1>Todo App!</h1>\n                <!-- <form> -->\n                    <!-- <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n                    </form>\n                    <button id='addTask' (click)='addTask()'>Add Task</button>\n                    <div *ngIf='show'>\n                    <button id='testButton'>Hello!!</button>\n                    </div> -->\n                    <button id='newTaskButton' name='newTaskButton'(click)='newTask()'>new task</button>\n        </div>\n        <div class=\"row justify-content-center\">\n            <app-task class=\"col-8\" *ngFor='let task of taskList; let i = index' [task]='task' [index]='i'></app-task>\n            <app-add-task class=\"col-8\" *ngFor='let task of addTaskList' [task]='task'></app-add-task> \n        </div>   \n</div>\n\n\n\n\n"
+module.exports = "<div id=\"main\" class=\"container\">\n        <div class=\"row justify-content-center\">\n                <h1>Todo App!</h1>\n                <!-- <form> -->\n                    <!-- <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n                    </form>\n                    <button id='addTask' (click)='addTask()'>Add Task</button>\n                    <div *ngIf='show'>\n                    <button id='testButton'>Hello!!</button>\n                    </div> -->\n                    <button id='newTaskButton' name='newTaskButton'(click)='newTask()'>new task</button>\n        </div>\n        <div class=\"row justify-content-center\" id=\"list-1\">\n            <app-task class=\"col-8\" *ngFor='let task of taskList; let i = index' [task]='task' [index]='i'></app-task>\n            <app-add-task class=\"col-8\" *ngFor='let task of addTaskList' [task]='task'></app-add-task> \n        </div>   \n</div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -335,9 +335,12 @@ let TaskComponent = class TaskComponent {
         }
     }
     deleteTask(id) {
-        var params = {
+        let params = {
             taskId: id
         };
+        let element = document.getElementById("list-1");
+        let child = document.getElementById(`taskItem ${id}`);
+        child.remove();
         console.log(params);
         this.user.deleteTask(params).subscribe();
     }
@@ -417,8 +420,8 @@ let TodoComponent = class TodoComponent {
         }
     }
     newTask() {
-        var arrayLength = this.addTaskList.length;
-        var newTask = {
+        let arrayLength = this.addTaskList.length;
+        let newTask = {
             completed: false,
             task: null,
             tempId: arrayLength
@@ -433,16 +436,6 @@ let TodoComponent = class TodoComponent {
         else {
             return false;
         }
-        //   if (this.taskList.slice(-1)[0].task === "" || this.taskList.slice(-1)[0].task === null) {
-        //     console.log(this.taskList)
-        //     return false;
-        //   } else {
-        //   var newTask = {
-        //       completed: false,
-        //       task: null,
-        //     }
-        //   this.taskList.push(newTask);
-        //   }
     }
 };
 TodoComponent.ctorParameters = () => [

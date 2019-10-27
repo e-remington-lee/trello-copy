@@ -35,12 +35,11 @@ export class TodoComponent implements OnInit {
       this.show = true;
     });
     }
-
   }
 
   newTask() {
-    var arrayLength = this.addTaskList.length;
-    var newTask = 
+    let arrayLength = this.addTaskList.length;
+    let newTask = 
       {
         completed: false,
         task: null,
@@ -54,17 +53,5 @@ export class TodoComponent implements OnInit {
     } else {
       return false;
     }
-
-  //   if (this.taskList.slice(-1)[0].task === "" || this.taskList.slice(-1)[0].task === null) {
-  //     console.log(this.taskList)
-  //     return false;
-  //   } else {
-  //   var newTask = {
-  //       completed: false,
-  //       task: null,
-  //     }
-  //   this.taskList.push(newTask);
-  //   }
-
   }
 }

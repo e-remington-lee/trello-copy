@@ -10,7 +10,7 @@
                     </div> -->
                     <button id='newTaskButton' name='newTaskButton'(click)='newTask()'>new task</button>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" id="list-1">
             <app-task class="col-8" *ngFor='let task of taskList; let i = index' [task]='task' [index]='i'></app-task>
             <app-add-task class="col-8" *ngFor='let task of addTaskList' [task]='task'></app-add-task> 
         </div>   

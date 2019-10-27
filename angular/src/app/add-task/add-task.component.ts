@@ -18,7 +18,7 @@ export class AddTaskComponent implements OnInit {
   }
 
     addTask(tempId) {
-      var value = (<HTMLInputElement>document.getElementById(tempId)).value;
+      let value = (<HTMLInputElement>document.getElementById(tempId)).value;
       if ( value.trim()=== "" ||
       value.trim() === null ) {
         return false;
