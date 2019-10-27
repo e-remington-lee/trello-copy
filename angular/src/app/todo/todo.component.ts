@@ -12,7 +12,6 @@ export class TodoComponent implements OnInit {
   obj: Object;
   taskList: any;
   addTaskList: any[]=[];
-  show: boolean;  
   userId: number = 1;
 
   constructor(private user: UsersService) { }
@@ -21,20 +20,6 @@ export class TodoComponent implements OnInit {
       this.user.getTasks(this.userId).subscribe(data => {
       this.taskList = data;
     });
-  }
-
-  addTask() {
-    if (this.task === "" || this.task === null) {
-      return false;
-    } else {
-    this.obj = {
-      task: this.task,
-      userId: 1
-    }
-    this.user.createTask(this.obj).subscribe(() => {
-      this.show = true;
-    });
-    }
   }
 
   newTask() {
