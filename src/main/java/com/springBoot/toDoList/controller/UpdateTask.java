@@ -16,7 +16,6 @@ public class UpdateTask {
             Integer taskId = (int)map.get("taskId");
             String task = map.get("task").toString();
             DataUpdateClass.updateTask(userId, taskId, task);
-            System.out.println("done");
         } catch (Error err) {
             throw new Error(err.getMessage());
         }

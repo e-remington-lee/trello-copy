@@ -29,11 +29,6 @@ public class ReturnTasks {
             } catch (Error err) {
                 throw new Error("SQL error");
             }
-//            if (array.length() == 0) {
-//                throw new Error("No tasks found");
-//            } else {
-//                return array.toString();
-//        }
         } catch (SQLException err) {
             throw new Error(err.getMessage());
         }
