@@ -60,5 +60,4 @@ export class TaskComponent implements OnInit {
     console.log(params);
     this.user.deleteTask(params).subscribe();
   }
-
 }

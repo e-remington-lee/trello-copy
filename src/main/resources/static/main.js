@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n    <div class='card-body'>    \n        <div class='content row'>\n            <textarea name=\"tempTextArea\" id={{task.tempId}} class=\"col-11 form-control\" type=\"text\" value={{task.task}}\n             placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"addTask(task.tempId)\">\n            </textarea>\n            <mat-icon class='icons col-1' >delete</mat-icon>\n        </div>   \n    </div>\n </div>\n"
+module.exports = "<div class='row'>\n        <textarea name=\"tempTextArea\" id={{task.tempId}} class=\"col-12 form-control\" type=\"text\" value={{task.task}}\n        placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"addTask(task.tempId)\">\n        </textarea>\n        <mat-icon class='col icons' >delete_outline</mat-icon>\n</div>\n\n\n"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n    <div id='taskItem {{task.task_id}}' class='card-body'>    \n        <div class='content row'>\n            <textarea name=\"textArea\"class=\"col-11 form-control\" type=\"text\" id={{task.task_id}}\n            value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\"\n            (keydown.enter)=\"enterTask(task)\" (change)=\"onChangeEvent(task)\">\n            <span>\n                    <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)'>delete</mat-icon>\n                    <div class=\"one\">Top</div>\n            </span>          \n            </textarea>\n            <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)'>delete</mat-icon>\n        </div>   \n    </div>\n </div>\n\n\n\n"
+module.exports = "<div class='row'>\n        <textarea name=\"textArea\" class=\"col-12 form-control\" type=\"text\" id={{task.task_id}}\n        value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\"\n       (keydown.enter)=\"enterTask(task)\" (change)=\"onChangeEvent(task)\">       \n       </textarea>\n       <mat-icon class='col icons' (click)='deleteTask(task.task_id)'>delete_outline</mat-icon>\n</div>\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -63,7 +63,7 @@ module.exports = "<div class=\"card\">\n    <div id='taskItem {{task.task_id}}' 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"main\" class=\"container\">\n        <div class=\"row justify-content-center\">\n                <h1>Todo App!</h1>\n                <!-- <form> -->\n                    <!-- <input id='inputTask' name='taskInput' [(ngModel)]='task'>\n                    </form>\n                    <button id='addTask' (click)='addTask()'>Add Task</button>\n                    <div *ngIf='show'>\n                    <button id='testButton'>Hello!!</button>\n                    </div> -->\n                    <button id='newTaskButton' name='newTaskButton'(click)='newTask()'>new task</button>\n        </div>\n        <div class=\"row justify-content-center\" id=\"list-1\">\n            <app-task class=\"col-8\" *ngFor='let task of taskList; let i = index' [task]='task' [index]='i'></app-task>\n            <app-add-task class=\"col-8\" *ngFor='let task of addTaskList' [task]='task'></app-add-task> \n        </div>   \n</div>\n\n\n\n\n"
+module.exports = "<div id=\"main\" class=\"container\">\n        <div class=\"row justify-content-center\">\n            <h1>Todo App!</h1>\n        </div>\n        <div class=\"row justify-content-center\" id=\"list-1\">\n                <div class=\"col-8 card\">\n                    <div class='card-header'> Task List 1</div>\n                            <div class='card-body'>    \n                                <app-task *ngFor='let task of taskList' [task]='task'></app-task>\n                                <app-add-task *ngFor='let task of addTaskList' [task]='task'></app-add-task> \n                        </div>\n                        <div id='newTask' class='card-footer' (click)='newTask()'>\n                                + Add New Task\n                            </div>\n                     </div>\n                </div>   \n            </div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -74,7 +74,7 @@ module.exports = "<div id=\"main\" class=\"container\">\n        <div class=\"ro
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".icons:hover {\n  cursor: pointer;\n}\n\n.card {\n  background: #cbd1d1;\n}\n\ntextarea {\n  width: 100%;\n  resize: none;\n  overflow: auto;\n  outline: none;\n  border: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWRkLXRhc2svRDpcXE1hc3Rlcm1pbmRcXHRvRG9MaXN0M1xcdG9Eb0xpc3RcXGFuZ3VsYXIvc3JjXFxhcHBcXGFkZC10YXNrXFxhZGQtdGFzay5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYWRkLXRhc2svYWRkLXRhc2suY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDSSxlQUFBO0FDQUo7O0FER0E7RUFDSSxtQkFBQTtBQ0FKOztBREdBO0VBQ0ksV0FBQTtFQUNBLFlBQUE7RUFDQSxjQUFBO0VBQ0EsYUFBQTtFQUNBLFlBQUE7QUNBSiIsImZpbGUiOiJzcmMvYXBwL2FkZC10YXNrL2FkZC10YXNrLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4uaWNvbnM6aG92ZXJ7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uY2FyZCB7XG4gICAgYmFja2dyb3VuZDogcmdiKDIwMywgMjA5LCAyMDkpO1xufVxuXG50ZXh0YXJlYSB7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgcmVzaXplOiBub25lO1xuICAgIG92ZXJmbG93OiBhdXRvO1xuICAgIG91dGxpbmU6IG5vbmU7XG4gICAgYm9yZGVyOiBub25lO1xufSIsIi5pY29uczpob3ZlciB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLmNhcmQge1xuICBiYWNrZ3JvdW5kOiAjY2JkMWQxO1xufVxuXG50ZXh0YXJlYSB7XG4gIHdpZHRoOiAxMDAlO1xuICByZXNpemU6IG5vbmU7XG4gIG92ZXJmbG93OiBhdXRvO1xuICBvdXRsaW5lOiBub25lO1xuICBib3JkZXI6IG5vbmU7XG59Il19 */"
+module.exports = ".icons:hover {\n  cursor: pointer;\n}\n\ntextarea {\n  width: 100%;\n  resize: none;\n  overflow: auto;\n  outline: none;\n  border: none;\n}\n\n.icons {\n  display: none;\n  margin-left: -40px;\n  position: relative;\n}\n\n.row:hover .icons {\n  display: block;\n}\n\n.row {\n  padding: 10px 0 10px 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWRkLXRhc2svRDpcXE1hc3Rlcm1pbmRcXHRvRG9MaXN0M1xcdG9Eb0xpc3RcXGFuZ3VsYXIvc3JjXFxhcHBcXGFkZC10YXNrXFxhZGQtdGFzay5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYWRkLXRhc2svYWRkLXRhc2suY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDSSxlQUFBO0FDQUo7O0FER0E7RUFDSSxXQUFBO0VBQ0EsWUFBQTtFQUNBLGNBQUE7RUFDQSxhQUFBO0VBQ0EsWUFBQTtBQ0FKOztBREdBO0VBQ0ksYUFBQTtFQUNBLGtCQUFBO0VBQ0Esa0JBQUE7QUNBSjs7QURHQTtFQUNJLGNBQUE7QUNBSjs7QURHQTtFQUNJLHNCQUFBO0FDQUoiLCJmaWxlIjoic3JjL2FwcC9hZGQtdGFzay9hZGQtdGFzay5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuLmljb25zOmhvdmVye1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cblxudGV4dGFyZWEge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIHJlc2l6ZTogbm9uZTtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgICBvdXRsaW5lOiBub25lO1xuICAgIGJvcmRlcjogbm9uZTtcbn1cblxuLmljb25zIHtcbiAgICBkaXNwbGF5OiBub25lO1xuICAgIG1hcmdpbi1sZWZ0Oi00MHB4O1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLnJvdzpob3ZlciAuaWNvbnMge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xufVxuXG4ucm93IHtcbiAgICBwYWRkaW5nOiAxMHB4IDAgMTBweCAwO1xufSIsIi5pY29uczpob3ZlciB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxudGV4dGFyZWEge1xuICB3aWR0aDogMTAwJTtcbiAgcmVzaXplOiBub25lO1xuICBvdmVyZmxvdzogYXV0bztcbiAgb3V0bGluZTogbm9uZTtcbiAgYm9yZGVyOiBub25lO1xufVxuXG4uaWNvbnMge1xuICBkaXNwbGF5OiBub25lO1xuICBtYXJnaW4tbGVmdDogLTQwcHg7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLnJvdzpob3ZlciAuaWNvbnMge1xuICBkaXNwbGF5OiBibG9jaztcbn1cblxuLnJvdyB7XG4gIHBhZGRpbmc6IDEwcHggMCAxMHB4IDA7XG59Il19 */"
 
 /***/ }),
 
@@ -277,7 +277,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".icons:hover {\n  cursor: pointer;\n}\n\n.one {\n  position: absolute;\n  top: 25px;\n  right: 50px;\n}\n\n.card {\n  background: #cbd1d1;\n}\n\ntextarea {\n  width: 100%;\n  resize: none;\n  overflow: auto;\n  outline: none;\n  border: none;\n  padding: 0 30px 0 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFzay9EOlxcTWFzdGVybWluZFxcdG9Eb0xpc3QzXFx0b0RvTGlzdFxcYW5ndWxhci9zcmNcXGFwcFxcdGFza1xcdGFzay5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdGFzay90YXNrLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0ksZUFBQTtBQ0FKOztBREdBO0VBQ0ksa0JBQUE7RUFDQSxTQUFBO0VBQ0EsV0FBQTtBQ0FKOztBREdBO0VBQ0ksbUJBQUE7QUNBSjs7QURHQTtFQUNJLFdBQUE7RUFDQSxZQUFBO0VBQ0EsY0FBQTtFQUNBLGFBQUE7RUFDQSxZQUFBO0VBQ0EsbUJBQUE7QUNBSiIsImZpbGUiOiJzcmMvYXBwL3Rhc2svdGFzay5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuLmljb25zOmhvdmVye1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLm9uZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogMjVweDtcbiAgICByaWdodDogNTBweDtcbn1cblxuLmNhcmQge1xuICAgIGJhY2tncm91bmQ6IHJnYigyMDMsIDIwOSwgMjA5KTtcbn1cblxudGV4dGFyZWEge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIHJlc2l6ZTogbm9uZTtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgICBvdXRsaW5lOiBub25lO1xuICAgIGJvcmRlcjogbm9uZTtcbiAgICBwYWRkaW5nOiAwIDMwcHggMCAwO1xufSIsIi5pY29uczpob3ZlciB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLm9uZSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiAyNXB4O1xuICByaWdodDogNTBweDtcbn1cblxuLmNhcmQge1xuICBiYWNrZ3JvdW5kOiAjY2JkMWQxO1xufVxuXG50ZXh0YXJlYSB7XG4gIHdpZHRoOiAxMDAlO1xuICByZXNpemU6IG5vbmU7XG4gIG92ZXJmbG93OiBhdXRvO1xuICBvdXRsaW5lOiBub25lO1xuICBib3JkZXI6IG5vbmU7XG4gIHBhZGRpbmc6IDAgMzBweCAwIDA7XG59Il19 */"
+module.exports = ".icons:hover {\n  cursor: pointer;\n}\n\ntextarea {\n  width: 100%;\n  resize: none;\n  overflow: auto;\n  outline: none;\n  border: none;\n}\n\n.icons {\n  display: none;\n  margin-left: -40px;\n  position: relative;\n}\n\n.row:hover .icons {\n  display: block;\n}\n\n.row {\n  padding: 10px 0 10px 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFzay9EOlxcTWFzdGVybWluZFxcdG9Eb0xpc3QzXFx0b0RvTGlzdFxcYW5ndWxhci9zcmNcXGFwcFxcdGFza1xcdGFzay5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdGFzay90YXNrLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0ksZUFBQTtBQ0FKOztBRElBO0VBQ0ksV0FBQTtFQUNBLFlBQUE7RUFDQSxjQUFBO0VBQ0EsYUFBQTtFQUNBLFlBQUE7QUNESjs7QURJQTtFQUNJLGFBQUE7RUFDQSxrQkFBQTtFQUNBLGtCQUFBO0FDREo7O0FESUE7RUFDSSxjQUFBO0FDREo7O0FER0E7RUFDSSxzQkFBQTtBQ0FKIiwiZmlsZSI6InNyYy9hcHAvdGFzay90YXNrLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4uaWNvbnM6aG92ZXJ7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG5cbnRleHRhcmVhIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICByZXNpemU6IG5vbmU7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG4gICAgb3V0bGluZTogbm9uZTtcbiAgICBib3JkZXI6IG5vbmU7XG59XG5cbi5pY29ucyB7XG4gICAgZGlzcGxheTogbm9uZTtcbiAgICBtYXJnaW4tbGVmdDotNDBweDtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG5cbi5yb3c6aG92ZXIgLmljb25zIHtcbiAgICBkaXNwbGF5OiBibG9jaztcbn1cbi5yb3cge1xuICAgIHBhZGRpbmc6IDEwcHggMCAxMHB4IDA7XG59IiwiLmljb25zOmhvdmVyIHtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG50ZXh0YXJlYSB7XG4gIHdpZHRoOiAxMDAlO1xuICByZXNpemU6IG5vbmU7XG4gIG92ZXJmbG93OiBhdXRvO1xuICBvdXRsaW5lOiBub25lO1xuICBib3JkZXI6IG5vbmU7XG59XG5cbi5pY29ucyB7XG4gIGRpc3BsYXk6IG5vbmU7XG4gIG1hcmdpbi1sZWZ0OiAtNDBweDtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xufVxuXG4ucm93OmhvdmVyIC5pY29ucyB7XG4gIGRpc3BsYXk6IGJsb2NrO1xufVxuXG4ucm93IHtcbiAgcGFkZGluZzogMTBweCAwIDEwcHggMDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -373,7 +373,7 @@ TaskComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RvZG8vdG9kby5jb21wb25lbnQuc2NzcyJ9 */"
+module.exports = ".card {\n  background: #cbd1d1;\n}\n\n.card-footer {\n  background: #cbd1d1;\n}\n\n.card-footer:hover {\n  cursor: pointer;\n  background: #b9bebe;\n}\n\n.card-header {\n  background: #cbd1d1;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdG9kby9EOlxcTWFzdGVybWluZFxcdG9Eb0xpc3QzXFx0b0RvTGlzdFxcYW5ndWxhci9zcmNcXGFwcFxcdG9kb1xcdG9kby5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdG9kby90b2RvLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7QUNDSjs7QURFQTtFQUNJLG1CQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0VBQ0EsbUJBQUE7QUNDSjs7QURFQTtFQUNJLG1CQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC90b2RvL3RvZG8uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZCB7XG4gICAgYmFja2dyb3VuZDogcmdiKDIwMywgMjA5LCAyMDkpO1xufVxuXG4uY2FyZC1mb290ZXIge1xuICAgIGJhY2tncm91bmQ6IHJnYigyMDMsIDIwOSwgMjA5KTtcbn1cblxuLmNhcmQtZm9vdGVyOmhvdmVyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgYmFja2dyb3VuZDogcmdiKDE4NSwgMTkwLCAxOTApO1xufVxuXG4uY2FyZC1oZWFkZXIge1xuICAgIGJhY2tncm91bmQ6IHJnYigyMDMsIDIwOSwgMjA5KTtcbn0iLCIuY2FyZCB7XG4gIGJhY2tncm91bmQ6ICNjYmQxZDE7XG59XG5cbi5jYXJkLWZvb3RlciB7XG4gIGJhY2tncm91bmQ6ICNjYmQxZDE7XG59XG5cbi5jYXJkLWZvb3Rlcjpob3ZlciB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgYmFja2dyb3VuZDogI2I5YmViZTtcbn1cblxuLmNhcmQtaGVhZGVyIHtcbiAgYmFja2dyb3VuZDogI2NiZDFkMTtcbn0iXX0= */"
 
 /***/ }),
 
@@ -404,20 +404,6 @@ let TodoComponent = class TodoComponent {
         this.user.getTasks(this.userId).subscribe(data => {
             this.taskList = data;
         });
-    }
-    addTask() {
-        if (this.task === "" || this.task === null) {
-            return false;
-        }
-        else {
-            this.obj = {
-                task: this.task,
-                userId: 1
-            };
-            this.user.createTask(this.obj).subscribe(() => {
-                this.show = true;
-            });
-        }
     }
     newTask() {
         let arrayLength = this.addTaskList.length;

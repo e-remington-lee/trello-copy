@@ -3,14 +3,24 @@
     cursor: pointer;
 }
 
-.card {
-    background: rgb(203, 209, 209);
-}
-
 textarea {
     width: 100%;
     resize: none;
     overflow: auto;
     outline: none;
     border: none;
+}
+
+.icons {
+    display: none;
+    margin-left:-40px;
+    position: relative;
+}
+
+.row:hover .icons {
+    display: block;
+}
+
+.row {
+    padding: 10px 0 10px 0;
 }
