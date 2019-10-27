@@ -4,6 +4,10 @@
             <textarea name="textArea"class="col-11 form-control" type="text" id={{task.task_id}}
             value={{task.task}} placeholder="Add a task..." (keydown.enter)="$event.preventDefault()"
             (keydown.enter)="enterTask(task)" (change)="onChangeEvent(task)">
+            <span>
+                    <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)'>delete</mat-icon>
+                    <div class="one">Top</div>
+            </span>          
             </textarea>
             <mat-icon class='icons col-1' (click)='deleteTask(task.task_id)'>delete</mat-icon>
         </div>   
