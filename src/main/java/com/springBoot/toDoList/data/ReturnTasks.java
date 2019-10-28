@@ -11,7 +11,7 @@ public class ReturnTasks {
     public static String returnTasks(Integer userId) {
         try {
             Connection con = DriverManager.getConnection(daoLayer.getURL(), daoLayer.getConnect());
-            PreparedStatement st = con.prepareStatement(("SELECT task_id, task_name, completed FROM tasks WHERE user_id = (?)"));
+            PreparedStatement st = con.prepareStatement(("SELECT task_id, task_name, completed FROM tasks WHERE user_id = (?) ORDER BY task_id ASC"));
             st.setInt(1,userId);
             ResultSet rs = st.executeQuery();
             JSONArray array = new JSONArray();

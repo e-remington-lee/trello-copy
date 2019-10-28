@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='row'>\n        <textarea name=\"tempTextArea\" id={{task.tempId}} class=\"col-12 form-control\" type=\"text\" value={{task.task}}\n        placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"addTask(task.tempId)\">\n        </textarea>\n        <mat-icon class='col icons' >delete_outline</mat-icon>\n</div>\n\n\n"
+module.exports = "<div id='row {{task.task_id}}' class='row'>\n        <textarea name=\"tempTextArea\" id={{task.task_id}} class=\"col-12 form-control\" type=\"text\" value={{task.task}}\n        placeholder=\"Add a task...\" (change)=\"onChangeEvent(task)\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"enterTask(task.task_id)\">\n        </textarea>\n        <mat-icon class='col icons' >delete_outline</mat-icon>\n</div>\n\n\n"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='row'>\n        <textarea name=\"textArea\" class=\"col-12 form-control\" type=\"text\" id={{task.task_id}}\n        value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\"\n       (keydown.enter)=\"enterTask(task)\" (change)=\"onChangeEvent(task)\">       \n       </textarea>\n       <mat-icon class='col icons' (click)='deleteTask(task.task_id)'>delete_outline</mat-icon>\n</div>\n\n\n\n\n\n"
+module.exports = "<div id='row {{task.task_id}}' class='row'>\n        <textarea name=\"textArea\" class=\"col-12 form-control\" type=\"text\" id={{task.task_id}}\n        value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\"\n       (keydown.enter)=\"enterTask(task.task_id)\" (change)=\"onChangeEvent(task)\">       \n       </textarea>\n       <mat-icon class='col icons' (click)='deleteTask(task.task_id)'>delete_outline</mat-icon>\n</div>\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -97,14 +97,14 @@ __webpack_require__.r(__webpack_exports__);
 let AddTaskComponent = class AddTaskComponent {
     constructor(user) {
         this.user = user;
+        this.userId = 1;
         this.onChange = true;
     }
     ngOnInit() {
     }
-    addTask(tempId) {
-        let value = document.getElementById(tempId).value;
-        if (value.trim() === "" ||
-            value.trim() === null) {
+    addTask(taskId) {
+        let value = document.getElementById(taskId).value;
+        if (value.trim() === "") {
             return false;
         }
         else {
@@ -112,8 +112,45 @@ let AddTaskComponent = class AddTaskComponent {
                 task: value.trim(),
                 userId: 1
             };
-            this.user.createTask(this.obj).subscribe();
-            console.log("posted");
+            this.user.createTask(this.obj).subscribe(() => {
+                // need to call a method that returns the last item of the user task item list,
+                //which then returns the data we need!!! which completes the circle!!
+                return console.log("posted");
+            });
+        }
+    }
+    enterTask(taskId) {
+        let input = document.getElementById(taskId);
+        input.blur();
+    }
+    onChangeEvent(taskItem) {
+        if (document.getElementById(`${taskItem.task_id}`).id === "0") {
+            return console.log("it no promise accepted");
+        }
+        else {
+            let input = document.getElementById(taskItem.task_id);
+            let inputTrim = input.value.trim();
+            let previousTask = taskItem.task;
+            if (inputTrim === "") {
+                return input.value = previousTask;
+            }
+            else if (inputTrim !== previousTask) {
+                let params = {
+                    "userId": this.userId,
+                    "taskId": taskItem.task_id,
+                    "task": inputTrim
+                };
+                this.user.updateTask(params).subscribe(() => {
+                    this.user.getSingleTask(params).subscribe(data => {
+                        this.task = data[0];
+                        console.log(inputTrim, previousTask);
+                        console.log(data[0]);
+                    });
+                });
+            }
+            else {
+                console.log("Nothing");
+            }
         }
     }
 };
@@ -305,8 +342,8 @@ let TaskComponent = class TaskComponent {
     }
     ngOnInit() {
     }
-    enterTask(taskItem) {
-        let input = document.getElementById(taskItem.task_id);
+    enterTask(taskId) {
+        let input = document.getElementById(taskId);
         input.blur();
     }
     onChangeEvent(taskItem) {
@@ -338,8 +375,7 @@ let TaskComponent = class TaskComponent {
         let params = {
             taskId: id
         };
-        let element = document.getElementById("list-1");
-        let child = document.getElementById(`taskItem ${id}`);
+        let child = document.getElementById(`row ${id}`);
         child.remove();
         console.log(params);
         this.user.deleteTask(params).subscribe();
@@ -351,9 +387,6 @@ TaskComponent.ctorParameters = () => [
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], TaskComponent.prototype, "task", void 0);
-tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
-], TaskComponent.prototype, "index", void 0);
 TaskComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-task',
@@ -373,7 +406,7 @@ TaskComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card {\n  background: #cbd1d1;\n}\n\n.card-footer {\n  background: #cbd1d1;\n}\n\n.card-footer:hover {\n  cursor: pointer;\n  background: #b9bebe;\n}\n\n.card-header {\n  background: #cbd1d1;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdG9kby9EOlxcTWFzdGVybWluZFxcdG9Eb0xpc3QzXFx0b0RvTGlzdFxcYW5ndWxhci9zcmNcXGFwcFxcdG9kb1xcdG9kby5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdG9kby90b2RvLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7QUNDSjs7QURFQTtFQUNJLG1CQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0VBQ0EsbUJBQUE7QUNDSjs7QURFQTtFQUNJLG1CQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC90b2RvL3RvZG8uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZCB7XG4gICAgYmFja2dyb3VuZDogcmdiKDIwMywgMjA5LCAyMDkpO1xufVxuXG4uY2FyZC1mb290ZXIge1xuICAgIGJhY2tncm91bmQ6IHJnYigyMDMsIDIwOSwgMjA5KTtcbn1cblxuLmNhcmQtZm9vdGVyOmhvdmVyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgYmFja2dyb3VuZDogcmdiKDE4NSwgMTkwLCAxOTApO1xufVxuXG4uY2FyZC1oZWFkZXIge1xuICAgIGJhY2tncm91bmQ6IHJnYigyMDMsIDIwOSwgMjA5KTtcbn0iLCIuY2FyZCB7XG4gIGJhY2tncm91bmQ6ICNjYmQxZDE7XG59XG5cbi5jYXJkLWZvb3RlciB7XG4gIGJhY2tncm91bmQ6ICNjYmQxZDE7XG59XG5cbi5jYXJkLWZvb3Rlcjpob3ZlciB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgYmFja2dyb3VuZDogI2I5YmViZTtcbn1cblxuLmNhcmQtaGVhZGVyIHtcbiAgYmFja2dyb3VuZDogI2NiZDFkMTtcbn0iXX0= */"
+module.exports = ".card {\n  background: #cbd1d1;\n}\n\nh1 {\n  color: #a9b4b4;\n}\n\n.card-footer {\n  background: #cbd1d1;\n}\n\n.card-footer:hover {\n  cursor: pointer;\n  background: #b9bebe;\n}\n\n.card-header {\n  background: #cbd1d1;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdG9kby9EOlxcTWFzdGVybWluZFxcdG9Eb0xpc3QzXFx0b0RvTGlzdFxcYW5ndWxhci9zcmNcXGFwcFxcdG9kb1xcdG9kby5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdG9kby90b2RvLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7QUNDSjs7QURFQTtFQUNJLGNBQUE7QUNDSjs7QURFQTtFQUNJLG1CQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0VBQ0EsbUJBQUE7QUNDSjs7QURFQTtFQUNJLG1CQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC90b2RvL3RvZG8uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZCB7XG4gICAgYmFja2dyb3VuZDogcmdiKDIwMywgMjA5LCAyMDkpO1xufVxuXG5oMSB7XG4gICAgY29sb3I6IHJnYigxNjksIDE4MCwgMTgwKTtcbn1cblxuLmNhcmQtZm9vdGVyIHtcbiAgICBiYWNrZ3JvdW5kOiByZ2IoMjAzLCAyMDksIDIwOSk7XG59XG5cbi5jYXJkLWZvb3Rlcjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJhY2tncm91bmQ6IHJnYigxODUsIDE5MCwgMTkwKTtcbn1cblxuLmNhcmQtaGVhZGVyIHtcbiAgICBiYWNrZ3JvdW5kOiByZ2IoMjAzLCAyMDksIDIwOSk7XG59IiwiLmNhcmQge1xuICBiYWNrZ3JvdW5kOiAjY2JkMWQxO1xufVxuXG5oMSB7XG4gIGNvbG9yOiAjYTliNGI0O1xufVxuXG4uY2FyZC1mb290ZXIge1xuICBiYWNrZ3JvdW5kOiAjY2JkMWQxO1xufVxuXG4uY2FyZC1mb290ZXI6aG92ZXIge1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIGJhY2tncm91bmQ6ICNiOWJlYmU7XG59XG5cbi5jYXJkLWhlYWRlciB7XG4gIGJhY2tncm91bmQ6ICNjYmQxZDE7XG59Il19 */"
 
 /***/ }),
 
@@ -406,22 +439,34 @@ let TodoComponent = class TodoComponent {
         });
     }
     newTask() {
-        let arrayLength = this.addTaskList.length;
         let newTask = {
             completed: false,
             task: null,
-            tempId: arrayLength
+            task_id: 0
         };
-        if (this.addTaskList.length === 0) {
+        if (!document.getElementById("0")) {
             console.log(newTask);
             this.addTaskList.push(newTask);
         }
-        else if (document.getElementById(`${arrayLength - 1}`).value !== "") {
-            this.addTaskList.push(newTask);
-        }
         else {
+            console.log("found item with id 0");
             return false;
         }
+        // let arrayLength = this.addTaskList.length;
+        // let newTask = 
+        //   {
+        //     completed: false,
+        //     task: null,
+        //     task_id: 0
+        //   }
+        // if (this.addTaskList.length === 0) {
+        //   console.log(newTask);
+        // this.addTaskList.push(newTask);
+        // } else if ((<HTMLInputElement>document.getElementById(`${arrayLength-1}`)).value !== ""){
+        //   this.addTaskList.push(newTask);
+        // } else {
+        //   return false;
+        // }
     }
 };
 TodoComponent.ctorParameters = () => [

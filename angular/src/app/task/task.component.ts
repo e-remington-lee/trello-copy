@@ -11,7 +11,6 @@ export class TaskComponent implements OnInit {
 
   userId: number = 1;
   @Input() task: any;
-  @Input() index: number;
   taskText: String;
   onChange: boolean = false;
   constructor(private user: UsersService) { }
@@ -19,8 +18,8 @@ export class TaskComponent implements OnInit {
   ngOnInit() {
   }
 
-  enterTask(taskItem) {
-    let input = document.getElementById(taskItem.task_id);
+  enterTask(taskId) {
+    let input = document.getElementById(taskId);
     input.blur();
   }
 
@@ -54,8 +53,7 @@ export class TaskComponent implements OnInit {
     let params = {
       taskId: id
     }
-    let element = document.getElementById("list-1");
-    let child = document.getElementById(`taskItem ${id}`);
+    let child = document.getElementById(`row ${id}`);
     child.remove();
     console.log(params);
     this.user.deleteTask(params).subscribe();

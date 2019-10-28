@@ -29,11 +29,7 @@ public class ToDoListApplicationTests extends openDriver {
 	public void testAddTAsk() {
 		addTaskTest.addTask(driver);
 	}
-//
-//	@Test
-//	public void testGetUser(){
-//		buttonTests.testGetUser(driver);
-//	}
+
 
 	@AfterClass
 	public static void closeDriver(){
