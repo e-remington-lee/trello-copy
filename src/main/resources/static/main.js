@@ -52,7 +52,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id='row {{task.task_id}}' class='row'>\n        <textarea name=\"textArea\" class=\"col-12 form-control\" type=\"text\" id={{task.task_id}}\n        value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\"\n       (keydown.enter)=\"enterTask(task.task_id)\" (change)=\"updateTask(task)\">       \n       </textarea>\n       <mat-icon class='col icons' (click)='deleteTask(task.task_id)'>delete_outline</mat-icon>\n</div>\n\n\n\n\n\n"
+module.exports = "<div id='row {{task.task_id}}' class='row' cdkDrag>\n        <textarea name=\"textArea\" class=\"col-12 form-control\" type=\"text\" id={{task.task_id}}\n        value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\"\n       (keydown.enter)=\"enterTask(task.task_id)\" (change)=\"updateTask(task)\">       \n       </textarea>\n       <mat-icon class='col icons' (click)='deleteTask(task.task_id)'>delete_outline</mat-icon>\n</div>\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -63,7 +63,7 @@ module.exports = "<div id='row {{task.task_id}}' class='row'>\n        <textarea
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"main\" class=\"container\">\n        <div class=\"row justify-content-center\">\n            <h1>Todo App!</h1>\n        </div>\n        <div class=\"row justify-content-center\" id=\"list-1\">\n                <div class=\"col-8 card\">\n                    <div class='card-header'> Task List 1</div>\n                            <div class='card-body'>    \n                                <app-task *ngFor='let task of taskList' [task]='task'></app-task>\n                                <app-add-task *ngFor='let task of addTaskList' [task]='task'></app-add-task> \n                        </div>\n                        <div id='newTask' class='card-footer' (click)='newTask()'>\n                                + Add New Task\n                            </div>\n                     </div>\n                </div>   \n            </div>\n\n\n\n\n"
+module.exports = "<div id=\"main\" class=\"container\">\n        <div class=\"row justify-content-center\">\n            <h1>Todo App!</h1>\n        </div>\n        <div class=\"row justify-content-center\" id=\"list-1\">\n                <div class=\"col-8 card\" cdkDrag>\n                    <div class='card-header' > Task List 1</div>\n                            <div class='card-body'>    \n                                <app-task *ngFor='let task of taskList' [task]='task' ></app-task>\n                                <app-add-task *ngFor='let task of addTaskList' [task]='task'></app-add-task> \n                        </div>\n                        <div id='newTask' class='card-footer' (click)='newTask()'>\n                                + Add New Task\n                            </div>\n                     </div>\n                </div>   \n            </div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -275,6 +275,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm2015/animations.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
 /* harmony import */ var _add_task_add_task_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./add-task/add-task.component */ "./src/app/add-task/add-task.component.ts");
+/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "./node_modules/@angular/cdk/esm2015/drag-drop.js");
+
 
 
 
@@ -303,9 +305,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"],
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatButtonModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatCheckboxModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatIconModule"]
+            _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatIconModule"],
+            _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_12__["DragDropModule"]
         ],
         providers: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
@@ -443,6 +444,8 @@ let TodoComponent = class TodoComponent {
     ngOnInit() {
         this.user.getTasks(this.userId).subscribe(data => {
             this.taskList = data;
+            console.log(this.taskList);
+            console.log(this.addTaskList);
         });
     }
     newTask() {

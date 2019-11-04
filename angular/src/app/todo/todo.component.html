@@ -3,10 +3,10 @@
             <h1>Todo App!</h1>
         </div>
         <div class="row justify-content-center" id="list-1">
-                <div class="col-8 card">
-                    <div class='card-header'> Task List 1</div>
+                <div class="col-8 card" cdkDrag>
+                    <div class='card-header' > Task List 1</div>
                             <div class='card-body'>    
-                                <app-task *ngFor='let task of taskList' [task]='task'></app-task>
+                                <app-task *ngFor='let task of taskList' [task]='task' ></app-task>
                                 <app-add-task *ngFor='let task of addTaskList' [task]='task'></app-add-task> 
                         </div>
                         <div id='newTask' class='card-footer' (click)='newTask()'>

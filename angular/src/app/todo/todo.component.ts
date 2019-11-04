@@ -19,6 +19,8 @@ export class TodoComponent implements OnInit {
   ngOnInit() {
       this.user.getTasks(this.userId).subscribe(data => {
       this.taskList = data;
+      console.log(this.taskList);
+      console.log(this.addTaskList);
     });
   }
 
