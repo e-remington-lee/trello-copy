@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id='row {{task.task_id}}' class='row'>\n        <textarea name=\"tempTextArea\" id={{task.task_id}} class=\"col-12 form-control\" type=\"text\" value={{task.task}}\n        placeholder=\"Add a task...\" (change)=\"onChangeEvent(task)\" (keydown.enter)=\"$event.preventDefault()\" (keydown.enter)=\"enterTask(task.task_id)\">\n        </textarea>\n        <mat-icon class='col icons' >delete_outline</mat-icon>\n</div>\n\n\n"
+module.exports = "<div id='row {{task.task_id}}' class='row'>\n        <textarea name=\"tempTextArea\" id={{task.task_id}} class=\"col-12 form-control\" type=\"text\" value={{task.task}}\n        placeholder=\"Add a task...\" (change)=\"addTask(task.task_id)\" (keydown.enter)=\"$event.preventDefault()\" \n        (keydown.enter)=\"enterTask(task.task_id)\">\n        </textarea>\n        <mat-icon class='col icons' >delete_outline</mat-icon>\n</div>\n\n\n"
 
 /***/ }),
 
