@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-todo',
@@ -38,5 +39,9 @@ export class TodoComponent implements OnInit {
       console.log("found item with id 0")
       return false;
     }
+  }
+
+  drop(event: CdkDragDrop<any>) {
+    moveItemInArray(this.taskList, event.previousIndex, event.currentIndex);
   }
 }

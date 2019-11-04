@@ -1,4 +1,4 @@
-<div id='row {{task.task_id}}' class='row' cdkDrag>
+<div id='row {{task.task_id}}' class='row' >
         <textarea name="textArea" class="col-12 form-control" type="text" id={{task.task_id}}
         value={{task.task}} placeholder="Add a task..." (keydown.enter)="$event.preventDefault()"
        (keydown.enter)="enterTask(task.task_id)" (change)="updateTask(task)">       
