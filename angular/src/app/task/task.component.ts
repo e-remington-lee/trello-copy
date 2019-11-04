@@ -49,7 +49,7 @@ export class TaskComponent implements OnInit {
 
   deleteTask(id){
     let params = {
-      taskId: id
+      "taskId": id
     }
     let child = document.getElementById(`row ${id}`);
     child.remove();

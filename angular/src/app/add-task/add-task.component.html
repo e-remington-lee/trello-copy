@@ -3,7 +3,7 @@
         placeholder="Add a task..." (change)="onChangeEvent(task)" (keydown.enter)="$event.preventDefault()" 
         (keydown.enter)="enterTask(task.task_id)">
         </textarea>
-        <mat-icon class='col icons' >delete_outline</mat-icon>
+        <mat-icon class='col icons' (click)='deleteTask(task.task_id)'>delete_outline</mat-icon>
 </div>
 
 

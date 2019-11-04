@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id='row {{task.task_id}}' class='row'>\n        <textarea name=\"tempTextArea\" id={{task.task_id}} class=\"col-12 form-control\" type=\"text\" value={{task.task}}\n        placeholder=\"Add a task...\" (change)=\"onChangeEvent(task)\" (keydown.enter)=\"$event.preventDefault()\" \n        (keydown.enter)=\"enterTask(task.task_id)\">\n        </textarea>\n        <mat-icon class='col icons' >delete_outline</mat-icon>\n</div>\n\n\n"
+module.exports = "<div id='row {{task.task_id}}' class='row'>\n        <textarea name=\"tempTextArea\" id={{task.task_id}} class=\"col-12 form-control\" type=\"text\" value={{task.task}}\n        placeholder=\"Add a task...\" (change)=\"onChangeEvent(task)\" (keydown.enter)=\"$event.preventDefault()\" \n        (keydown.enter)=\"enterTask(task.task_id)\">\n        </textarea>\n        <mat-icon class='col icons' (click)='deleteTask(task.task_id)'>delete_outline</mat-icon>\n</div>\n\n\n"
 
 /***/ }),
 
@@ -152,6 +152,15 @@ let AddTaskComponent = class AddTaskComponent {
     enterTask(taskId) {
         let input = document.getElementById(taskId);
         input.blur();
+    }
+    deleteTask(taskId) {
+        let params = {
+            "taskId": taskId
+        };
+        let child = document.getElementById(`row ${taskId}`);
+        child.remove();
+        console.log(params);
+        this.user.deleteTask(params).subscribe();
     }
 };
 AddTaskComponent.ctorParameters = () => [
@@ -371,7 +380,7 @@ let TaskComponent = class TaskComponent {
     }
     deleteTask(id) {
         let params = {
-            taskId: id
+            "taskId": id
         };
         let child = document.getElementById(`row ${id}`);
         child.remove();

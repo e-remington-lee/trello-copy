@@ -70,5 +70,14 @@ export class AddTaskComponent implements OnInit {
       input.blur();
     }
 
+    deleteTask(taskId) {
+      let params = {
+        "taskId": taskId
+      }
+      let child = document.getElementById(`row ${taskId}`);
+      child.remove();
+      console.log(params);
+      this.user.deleteTask(params).subscribe();
+    }
 
 }
