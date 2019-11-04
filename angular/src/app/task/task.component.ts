@@ -24,7 +24,7 @@ export class TaskComponent implements OnInit {
   }
 
 
-  onChangeEvent(taskItem) {
+  updateTask(taskItem) {
     let input = document.getElementById(taskItem.task_id);
     let inputTrim = (<HTMLInputElement>input).value.trim();
     let previousTask = taskItem.task;
@@ -36,12 +36,10 @@ export class TaskComponent implements OnInit {
           "taskId": taskItem.task_id,
           "task": inputTrim
       }
-      this.user.updateTask(params).subscribe(() => {
-        this.user.getSingleTask(params).subscribe(data => {
-          this.task = data[0];
-          console.log(inputTrim, previousTask);
-          console.log(data[0]);
-        });
+      this.user.updateTask(params).subscribe(data => {
+        this.task = data[0];
+        console.log(data[0]);
+        console.log(previousTask, inputTrim);
       });
     } else {
       console.log("Nothing");

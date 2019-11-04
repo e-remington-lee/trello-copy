@@ -16,7 +16,16 @@ export class AddTaskComponent implements OnInit {
   constructor(private user: UsersService) { }
 
   ngOnInit() {
+
   }
+
+    onChangeEvent(taskItem) {
+      if (document.getElementById(`${taskItem.task_id}`).id === "0") {
+        return this.addTask(taskItem.task_id);
+      } else {
+        return this.updateTask(taskItem);
+      }
+    }
 
     addTask(taskId) {
       let value = (<HTMLInputElement>document.getElementById(taskId)).value;
@@ -27,11 +36,32 @@ export class AddTaskComponent implements OnInit {
         task: value.trim(),
         userId: 1
       }
-      this.user.createTask(this.obj).subscribe(() => {
-        // need to call a method that returns the last item of the user task item list,
-        //which then returns the data we need!!! which completes the circle!!
-        return console.log("posted");
+      this.user.createTask(this.obj).subscribe(data => {
+        this.task = data[0];
+        // console.log(data[0]);
         });
+      }
+    }
+
+    updateTask(taskItem){
+      let input = document.getElementById(taskItem.task_id);
+      let inputTrim = (<HTMLInputElement>input).value.trim();
+      let previousTask = taskItem.task;
+      if (inputTrim === "") {
+        return (<HTMLInputElement>input).value = previousTask;
+      } else if (inputTrim !== previousTask) {
+        let params = {
+            "userId": this.userId,
+            "taskId": taskItem.task_id,
+            "task": inputTrim
+        }
+        this.user.updateTask(params).subscribe(data => {
+          this.task = data[0];
+          console.log(data[0]);
+          console.log(previousTask, inputTrim);
+        });
+      } else {
+        console.log("Nothing");
       }
     }
 
@@ -40,32 +70,5 @@ export class AddTaskComponent implements OnInit {
       input.blur();
     }
 
-    onChangeEvent(taskItem) {
-      if (document.getElementById(`${taskItem.task_id}`).id === "0") {
-        return console.log("it no promise accepted");
-      } else {
-        let input = document.getElementById(taskItem.task_id);
-        let inputTrim = (<HTMLInputElement>input).value.trim();
-        let previousTask = taskItem.task;
-        if (inputTrim === "") {
-          return (<HTMLInputElement>input).value = previousTask;
-        } else if (inputTrim !== previousTask) {
-          let params = {
-              "userId": this.userId,
-              "taskId": taskItem.task_id,
-              "task": inputTrim
-          }
-          this.user.updateTask(params).subscribe(() => {
-            this.user.getSingleTask(params).subscribe(data => {
-              this.task = data[0];
-              console.log(inputTrim, previousTask);
-              console.log(data[0]);
-            });
-          });
-        } else {
-          console.log("Nothing");
-        }
-      }
 
-    }
 }

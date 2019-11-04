@@ -1,6 +1,6 @@
 <div id='row {{task.task_id}}' class='row'>
         <textarea name="tempTextArea" id={{task.task_id}} class="col-12 form-control" type="text" value={{task.task}}
-        placeholder="Add a task..." (change)="addTask(task.task_id)" (keydown.enter)="$event.preventDefault()" 
+        placeholder="Add a task..." (change)="onChangeEvent(task)" (keydown.enter)="$event.preventDefault()" 
         (keydown.enter)="enterTask(task.task_id)">
         </textarea>
         <mat-icon class='col icons' >delete_outline</mat-icon>

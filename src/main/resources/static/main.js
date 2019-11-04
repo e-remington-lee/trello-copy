@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id='row {{task.task_id}}' class='row'>\n        <textarea name=\"tempTextArea\" id={{task.task_id}} class=\"col-12 form-control\" type=\"text\" value={{task.task}}\n        placeholder=\"Add a task...\" (change)=\"addTask(task.task_id)\" (keydown.enter)=\"$event.preventDefault()\" \n        (keydown.enter)=\"enterTask(task.task_id)\">\n        </textarea>\n        <mat-icon class='col icons' >delete_outline</mat-icon>\n</div>\n\n\n"
+module.exports = "<div id='row {{task.task_id}}' class='row'>\n        <textarea name=\"tempTextArea\" id={{task.task_id}} class=\"col-12 form-control\" type=\"text\" value={{task.task}}\n        placeholder=\"Add a task...\" (change)=\"onChangeEvent(task)\" (keydown.enter)=\"$event.preventDefault()\" \n        (keydown.enter)=\"enterTask(task.task_id)\">\n        </textarea>\n        <mat-icon class='col icons' >delete_outline</mat-icon>\n</div>\n\n\n"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<router-outlet>\n  <app-todo></app-todo>\n</router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id='row {{task.task_id}}' class='row'>\n        <textarea name=\"textArea\" class=\"col-12 form-control\" type=\"text\" id={{task.task_id}}\n        value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\"\n       (keydown.enter)=\"enterTask(task.task_id)\" (change)=\"onChangeEvent(task)\">       \n       </textarea>\n       <mat-icon class='col icons' (click)='deleteTask(task.task_id)'>delete_outline</mat-icon>\n</div>\n\n\n\n\n\n"
+module.exports = "<div id='row {{task.task_id}}' class='row'>\n        <textarea name=\"textArea\" class=\"col-12 form-control\" type=\"text\" id={{task.task_id}}\n        value={{task.task}} placeholder=\"Add a task...\" (keydown.enter)=\"$event.preventDefault()\"\n       (keydown.enter)=\"enterTask(task.task_id)\" (change)=\"updateTask(task)\">       \n       </textarea>\n       <mat-icon class='col icons' (click)='deleteTask(task.task_id)'>delete_outline</mat-icon>\n</div>\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -102,6 +102,14 @@ let AddTaskComponent = class AddTaskComponent {
     }
     ngOnInit() {
     }
+    onChangeEvent(taskItem) {
+        if (document.getElementById(`${taskItem.task_id}`).id === "0") {
+            return this.addTask(taskItem.task_id);
+        }
+        else {
+            return this.updateTask(taskItem);
+        }
+    }
     addTask(taskId) {
         let value = document.getElementById(taskId).value;
         if (value.trim() === "") {
@@ -112,46 +120,38 @@ let AddTaskComponent = class AddTaskComponent {
                 task: value.trim(),
                 userId: 1
             };
-            this.user.createTask(this.obj).subscribe(() => {
-                // need to call a method that returns the last item of the user task item list,
-                //which then returns the data we need!!! which completes the circle!!
-                return console.log("posted");
+            this.user.createTask(this.obj).subscribe(data => {
+                this.task = data[0];
+                // console.log(data[0]);
             });
+        }
+    }
+    updateTask(taskItem) {
+        let input = document.getElementById(taskItem.task_id);
+        let inputTrim = input.value.trim();
+        let previousTask = taskItem.task;
+        if (inputTrim === "") {
+            return input.value = previousTask;
+        }
+        else if (inputTrim !== previousTask) {
+            let params = {
+                "userId": this.userId,
+                "taskId": taskItem.task_id,
+                "task": inputTrim
+            };
+            this.user.updateTask(params).subscribe(data => {
+                this.task = data[0];
+                console.log(data[0]);
+                console.log(previousTask, inputTrim);
+            });
+        }
+        else {
+            console.log("Nothing");
         }
     }
     enterTask(taskId) {
         let input = document.getElementById(taskId);
         input.blur();
-    }
-    onChangeEvent(taskItem) {
-        if (document.getElementById(`${taskItem.task_id}`).id === "0") {
-            return console.log("it no promise accepted");
-        }
-        else {
-            let input = document.getElementById(taskItem.task_id);
-            let inputTrim = input.value.trim();
-            let previousTask = taskItem.task;
-            if (inputTrim === "") {
-                return input.value = previousTask;
-            }
-            else if (inputTrim !== previousTask) {
-                let params = {
-                    "userId": this.userId,
-                    "taskId": taskItem.task_id,
-                    "task": inputTrim
-                };
-                this.user.updateTask(params).subscribe(() => {
-                    this.user.getSingleTask(params).subscribe(data => {
-                        this.task = data[0];
-                        console.log(inputTrim, previousTask);
-                        console.log(data[0]);
-                    });
-                });
-            }
-            else {
-                console.log("Nothing");
-            }
-        }
     }
 };
 AddTaskComponent.ctorParameters = () => [
@@ -346,7 +346,7 @@ let TaskComponent = class TaskComponent {
         let input = document.getElementById(taskId);
         input.blur();
     }
-    onChangeEvent(taskItem) {
+    updateTask(taskItem) {
         let input = document.getElementById(taskItem.task_id);
         let inputTrim = input.value.trim();
         let previousTask = taskItem.task;
@@ -359,12 +359,10 @@ let TaskComponent = class TaskComponent {
                 "taskId": taskItem.task_id,
                 "task": inputTrim
             };
-            this.user.updateTask(params).subscribe(() => {
-                this.user.getSingleTask(params).subscribe(data => {
-                    this.task = data[0];
-                    console.log(inputTrim, previousTask);
-                    console.log(data[0]);
-                });
+            this.user.updateTask(params).subscribe(data => {
+                this.task = data[0];
+                console.log(data[0]);
+                console.log(previousTask, inputTrim);
             });
         }
         else {
@@ -452,21 +450,6 @@ let TodoComponent = class TodoComponent {
             console.log("found item with id 0");
             return false;
         }
-        // let arrayLength = this.addTaskList.length;
-        // let newTask = 
-        //   {
-        //     completed: false,
-        //     task: null,
-        //     task_id: 0
-        //   }
-        // if (this.addTaskList.length === 0) {
-        //   console.log(newTask);
-        // this.addTaskList.push(newTask);
-        // } else if ((<HTMLInputElement>document.getElementById(`${arrayLength-1}`)).value !== ""){
-        //   this.addTaskList.push(newTask);
-        // } else {
-        //   return false;
-        // }
     }
 };
 TodoComponent.ctorParameters = () => [

@@ -10,12 +10,17 @@ import java.util.Map;
 public class UpdateTask {
     @PostMapping("/api/updateTask")
     @ResponseStatus(HttpStatus.CREATED)
-    public void updateTask(@RequestBody Map<String, Object> map) {
+    public String updateTask(@RequestBody Map<String, Object> map) {
         try {
             Integer userId = (int)map.get("userId");
             Integer taskId = (int)map.get("taskId");
             String task = map.get("task").toString();
-            DataUpdateClass.updateTask(userId, taskId, task);
+            String array = DataUpdateClass.updateTask(userId, taskId, task);
+            try {
+                return array;
+            } catch (Error err) {
+                throw new Error(err.getMessage());
+            }
         } catch (Error err) {
             throw new Error(err.getMessage());
         }

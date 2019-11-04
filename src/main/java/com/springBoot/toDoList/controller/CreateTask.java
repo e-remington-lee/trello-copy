@@ -14,12 +14,16 @@ import java.util.Map;
 public class CreateTask {
     @PostMapping("/api/createTask")
     @ResponseStatus(HttpStatus.CREATED)
-    public void postTask(@RequestBody Map<String, Object> obj){
+    public String postTask(@RequestBody Map<String, Object> obj){
         try {
             String task = obj.get("task").toString();
             Integer userId = (int) obj.get("userId");
-            DataCreateClass.createTask(task, userId);
-
+            String array = DataCreateClass.createTask(task, userId);
+            try {
+                return array;
+            } catch(Error err) {
+                throw new Error(err.getMessage());
+            }
         } catch(NullPointerException err) {
             throw new Error("Message Required");
         }
